@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 16:39:05 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/12 16:40:54 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/12 16:48:45 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ int		ft_strcmp(const char *s1, const char *s2)
 	return (s1[s1_swipe] - s2[s1_swipe]);
 }
 
-int		ft_intlen(int n)
+size_t	ft_intlen(int n)
 {
-	int		count;
+	size_t	count;
 
 	count = 1;
 	while (n >= 10)
@@ -65,12 +65,11 @@ void	ft_putnbr(int n)
 		ft_putchar(n + '0');
 }
 
-int		ft_bzero(char *str, int size)
+void	ft_bzero(char *str, size_t size)
 {
 	int		ss;
 
 	ss = 0;
 	while (ss <= size)
 		str[ss++] = 0;
-	return (0);
 }
