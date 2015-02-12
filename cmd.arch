@@ -1,0 +1,6 @@
+cd
+exit
+setenv
+unsetenv
+env
+exit
