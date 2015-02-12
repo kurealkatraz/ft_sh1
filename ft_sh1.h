@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 16:51:50 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/12 16:52:07 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/12 17:07:58 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 # include <unistd.h>
 # include <stdlib.h>
 
+/*
+** ft_get_next_line.c
+*/
+char	*ft_fill_holder(int fd);
+int		ft_get_next_line(int fd, char **line);
 /*
 ** ft_libstr_0.c
 */
@@ -32,3 +37,4 @@ int		ft_intlen(int n);
 void	ft_putnbr(int n);
 void	ft_bzero(char *str, size_t size);
 
+#endif
