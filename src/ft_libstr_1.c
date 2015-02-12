@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 16:39:05 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/12 16:48:45 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/02/12 17:17:48 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	ft_putnbr(int n)
 
 void	ft_bzero(char *str, size_t size)
 {
-	int		ss;
+	size_t	ss;
 
 	ss = 0;
 	while (ss <= size)

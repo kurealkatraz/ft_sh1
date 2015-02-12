@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 16:51:50 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/12 17:13:24 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/02/12 17:17:13 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_putchar(char c);
 */
 void	ft_putstr(char *str);
 int		ft_strcmp(const char *s1, const char *s2);
-int		ft_intlen(int n);
+size_t	ft_intlen(int n);
 void	ft_putnbr(int n);
 void	ft_bzero(char *str, size_t size);
 
