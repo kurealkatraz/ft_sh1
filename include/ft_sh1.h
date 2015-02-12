@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 16:51:50 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/12 17:07:58 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/02/12 17:13:24 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define FT_SH1_H
 # include <unistd.h>
 # include <stdlib.h>
+
+# define BUF_SIZE 42
 
 /*
 ** ft_get_next_line.c
