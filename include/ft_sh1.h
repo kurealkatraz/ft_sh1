@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 16:51:50 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/12 17:17:13 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/12 17:25:07 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FT_SH1_H
 # include <unistd.h>
 # include <stdlib.h>
+# include <fcntl.h>
 
 # define BUF_SIZE 42
 
