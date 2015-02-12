@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 16:42:56 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/12 18:30:02 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/12 19:52:52 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,19 @@ char	*ft_fill_holder(int fd)
 	char	*buf;
 	char	*tmp;
 
+	r = 0;
 	buf = (char*)malloc(sizeof(char) * (BUF_SIZE + 1));
 	tmp = NULL;
 	while ((r = read(fd, (char*)buf, BUF_SIZE)) > 0)
 	{
 		buf[r] = '\0';
 		tmp = ft_strjoin(tmp, buf);
+		//ADDED IF
+		if (tmp[ft_strlen(tmp) - 1] == '\n')
+		{
+			free (buf);
+			return (tmp);
+		}
 	}
 	free(buf);
 	return (tmp);
@@ -58,7 +65,7 @@ int		ft_get_next_line(int fd, char **line)
 		(*line)[0] = '\n';
 		(*line)[1] = '\0';
 		h_swiper++;
-		return(1);
+		return (1);
 	}
 	h_swiper = ft_process_line(holder, h_swiper, line);
 	if ((*line)[0] == '\0')
@@ -67,18 +74,4 @@ int		ft_get_next_line(int fd, char **line)
 		return (0);
 	}
 	return (1);
-}
-
-int		main(void)
-{
-	int		fd;
-	char	*line;
-
-	fd = 1;
-	while (ft_get_next_line(fd, &line) > 0)
-	{
-		ft_putstr(line);
-		ft_putchar('\n');
-	}
-	return (0);
 }
