@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 16:39:05 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/12 17:39:40 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/12 17:53:25 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,16 @@ char	*ft_strjoin(char *s1, char *s2)
 	int		ss;
 
 	ss = 0;
-	if (!s1 && !s2)
+	if (s1 == NULL && s2 == NULL)
 		return (NULL);
-	else if (!s1)
+	else if (s1 == NULL)
 		return (ft_strdup(s2));
-	else if (!s2)
+	else if (s2 == NULL)
 		return (ft_strdup(s1));
 	swap = (char*)malloc(sizeof(char) * (ft_strlen(s1) * ft_strlen(s2) + 1));
-	while (s1)
+	while (*s1)
 		swap[ss++] = *s1++;
-	while (s2)
+	while (*s2)
 		swap[ss++] = *s2++;
 	swap[ss] = '\0';
 	return (swap);
