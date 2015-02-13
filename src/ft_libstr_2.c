@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/13 13:45:53 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/13 14:39:43 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/02/13 14:59:21 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,10 @@ int		ft_ssize(char *clean_line, char delim, int pos)
 
 	size = 0;
 	while (clean_line[pos] != delim && clean_line[pos])
+	{
+		pos++;
 		size++;
+	}
 	return (size);
 }
 
@@ -57,7 +60,7 @@ int		ft_tsize(char *clean_line, char delim)
 
 	ss = 0;
 	size = 0;
-	while (clean_line[ss])
+	while (clean_line[ss++])
 		if (clean_line[ss] == delim)
 			size++;
 	return (size);
@@ -73,7 +76,7 @@ char	**ft_get_argv(char *line, char d)
 	ts = 0;
 	pos = 0;
 	argv = (char**)malloc(sizeof(char*) * (ft_tsize(line, d) + 1));
-	while (line[pos])
+	while (line[pos] && ts <= ft_tsize(line, d))
 	{
 		ss = 0;
 		argv[ts] = (char*)malloc(sizeof(char) * (ft_ssize(line, d, pos) + 1));
