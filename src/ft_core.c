@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 18:52:03 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/12 19:52:13 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/13 14:49:40 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,6 @@
 
 int		main(void)
 {
-	char *line;
-
-	while (ft_strcmp("exit", line) != 0)
-	{
-		ft_putstr("$>");
-		ft_get_next_line(0, &line);
-		ft_putstr(line);
-	}
+	ft_prompt("8===>");
 	return (0);
 }
