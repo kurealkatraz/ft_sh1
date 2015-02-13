@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 16:42:56 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/12 19:52:52 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/13 13:58:53 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,16 @@ char	*ft_fill_holder(int fd)
 	char	*tmp;
 
 	r = 0;
-	buf = (char*)malloc(sizeof(char) * (BUF_SIZE + 1));
+	if (!(buf = (char*)malloc(sizeof(char) * (BUF_SIZE + 1))))
+	{
+		buf = (char*)malloc(sizeof(char) * 6);
+		return("exit\n\0");
+	}
 	tmp = NULL;
 	while ((r = read(fd, (char*)buf, BUF_SIZE)) > 0)
 	{
 		buf[r] = '\0';
 		tmp = ft_strjoin(tmp, buf);
-		//ADDED IF
-		if (tmp[ft_strlen(tmp) - 1] == '\n')
-		{
-			free (buf);
-			return (tmp);
-		}
 	}
 	free(buf);
 	return (tmp);
