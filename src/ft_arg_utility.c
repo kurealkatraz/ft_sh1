@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_input.c                                   :+:      :+:    :+:   */
+/*   ft_arg_utility.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/02/12 20:27:59 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/12 20:32:27 by mgras            ###   ########.fr       */
+/*   Created: 2015/02/16 16:46:59 by mgras             #+#    #+#             */
+/*   Updated: 2015/02/16 16:49:58 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_check_input(char *input)
-{
-	char	*line;
-	int		fd;
-	int		index;
+#include "ft_sh1.h"
 
-	index = 0;
-	fd = open("../cmd.arch")
-	while (get_next_line(fd, &line))
-	{
-		if (ft_strcmp(line, input) == 0)
-			index = 1;
-	}
-	return (index);
+int		ft_get_argc(char *input, char delim)
+{
+	char	*clean;
+	int		argc;
+
+	clean = ft_get_clean_line(input, ' ', 0);
+	argc = ft_tsize(clean, delim);
+	argc--;
+	free(clean);
+	return (argc);
+}
+
+void	ft_free_argv(char **argv, int argc)
+{
+	int		ss;
+
+	ss = 0;
+	while (ss <= argc)
+		free(argv[ss++]);
+	free(argv);
 }
