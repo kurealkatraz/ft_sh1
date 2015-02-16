@@ -6,9 +6,15 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/13 13:45:53 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/13 14:59:21 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/16 16:20:55 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*
+** This function is purely
+** here to retrieve a pseudo
+** argv from the usr imput
+*/
 
 #include "ft_sh1.h"
 
@@ -18,14 +24,14 @@ char	*ft_get_clean_line(char *line, char delim, int ss)
 	int		start;
 	int		end;
 
-	end = ft_strlen(line);
-	ss = 0;
+	end = ft_strlen(line) - 2;
+	start = 0;
 	while (line[start] == delim)
 		start++;
 	while (line[end] == delim && end >= start)
 		end--;
 	clean_line = (char*)malloc(sizeof(char) * (end - start + 1));
-	while (start != end)
+	while (start <= end)
 	{
 		if (line[start] == delim)
 		{
@@ -63,7 +69,7 @@ int		ft_tsize(char *clean_line, char delim)
 	while (clean_line[ss++])
 		if (clean_line[ss] == delim)
 			size++;
-	return (size);
+	return (size + 1);
 }
 
 char	**ft_get_argv(char *line, char d)
@@ -83,6 +89,7 @@ char	**ft_get_argv(char *line, char d)
 		while (line[pos] != d && line[pos])
 			argv[ts][ss++] = line[pos++];
 		argv[ts][ss] = '\0';
+		pos++;
 		ts++;
 	}
 	return (argv);
@@ -90,10 +97,8 @@ char	**ft_get_argv(char *line, char d)
 
 char	**ft_strsplit(char *line, char delim)
 {
-	char	*clean_line;
 	char	**argv;
 
-	clean_line = ft_get_clean_line(line, delim, 0);
-	argv = ft_get_argv(clean_line, delim);
+	argv = ft_get_argv(ft_get_clean_line(line, delim, 0), delim);
 	return (argv);
 }
