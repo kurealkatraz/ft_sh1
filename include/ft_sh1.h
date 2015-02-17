@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 16:51:50 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/16 16:55:38 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/16 18:14:20 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,8 @@ char	**ft_strsplit(char *line, char delim);
 */
 int		ft_get_argc(char *input, char delim);
 void	ft_free_argv(char **argv, int argc);
+int		ft_check_cmd(char *line, char *cmd);
+char	*ft_get_path(char *line);
+char	*ft_get_exec_path(char *cmd);
 
 #endif
