@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 20:48:24 by tlebrize          #+#    #+#             */
-/*   Updated: 2015/02/17 16:35:40 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/17 17:38:24 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		ft_new_process(const char *path, char *const *argv, char *const *envp)
 	return (0);
 }
 
-void	ft_process_arg(char **argv, int argc)
+void	ft_process_arg(char **argv, int argc, char **envp)
 {
 	char	*path;
 
@@ -33,7 +33,7 @@ void	ft_process_arg(char **argv, int argc)
 		path = ft_get_exec_path(argv[0]);
 		if (path != NULL)
 		{
-			ft_new_process(path, argv, NULL);
+			ft_new_process(path, argv, envp);
 			free(path);
 		}
 		else
@@ -45,7 +45,7 @@ void	ft_process_arg(char **argv, int argc)
 	}
 }
 
-void	ft_prompt(char *prompt)
+void	ft_prompt(char *prompt, char **envp)
 {
 	char	**argv;
 	char	*buff;
@@ -63,7 +63,7 @@ void	ft_prompt(char *prompt)
 		argc = ft_get_argc(buff, ' ');
 		if (0 != ft_strcmp("exit\n", buff))
 		{
-			ft_process_arg(argv, argc);
+			ft_process_arg(argv, argc, envp);
 			ft_free_argv(argv, argc);
 		}
 	}

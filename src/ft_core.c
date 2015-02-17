@@ -6,14 +6,16 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 18:52:03 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/16 17:05:05 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/17 17:37:08 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh1.h"
 
-int		main(void)
+int		main(int argc, char **argv, char **envp)
 {
-	ft_prompt("$>");
+	argv = argv;
+	argc = argc;
+	ft_prompt("$>", envp);
 	return (0);
 }
