@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 16:51:50 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/17 16:10:08 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/17 16:14:26 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 */
 void	ft_prompt(char *prompt);
 void	ft_process_arg(char **argv, int argc);
-
+int		ft_new_process(const char *path, char *const *argv, char *const *envp);
 /*
 ** ft_get_next_line.c
 */

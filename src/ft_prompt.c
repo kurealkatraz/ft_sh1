@@ -6,11 +6,23 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 20:48:24 by tlebrize          #+#    #+#             */
-/*   Updated: 2015/02/17 15:51:58 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/17 16:12:55 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh1.h"
+
+int		ft_new_process(const char *path, char *const *argv, char *const *envp)
+{
+	pid_t	pid;
+
+	pid = fork();
+	if (pid == 0)
+		execve(path, argv, envp);
+	else
+		wait(NULL);
+	return (0);
+}
 
 void	ft_process_arg(char **argv, int argc)
 {
@@ -21,8 +33,7 @@ void	ft_process_arg(char **argv, int argc)
 		path = ft_get_exec_path(argv[0]);
 		if (path != NULL)
 		{
-			ft_putstr(path);
-			ft_putchar('\n');
+			ft_new_process(path, argv, NULL);
 			free(path);
 		}
 	}
