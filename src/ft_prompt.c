@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 20:48:24 by tlebrize          #+#    #+#             */
-/*   Updated: 2015/02/17 16:24:55 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/17 16:29:49 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,9 @@ void	ft_process_arg(char **argv, int argc)
 		}
 		else
 		{
+			ft_putstr("ft_sh1: comand not found : ");
 			ft_putstr(argv[0]);
-			ft_putstr(" : is not a valid command\n");
+			ft_putchar('\n');
 		}
 	}
 }
