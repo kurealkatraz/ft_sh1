@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 16:51:50 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/17 15:24:04 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/17 16:10:08 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,14 @@
 ** ft_prompt.c
 */
 void	ft_prompt(char *prompt);
+void	ft_process_arg(char **argv, int argc);
 
 /*
 ** ft_get_next_line.c
 */
 char	*ft_fill_holder(int fd);
 int		ft_get_next_line(int fd, char **line);
+int		ft_process_line(char *holder, int h_swiper, char **line);
 
 /*
 ** ft_libstr_0.c
