@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/16 16:46:59 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/17 15:22:09 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/17 15:59:33 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,8 @@ int		ft_get_argc(char *input, char delim)
 
 	clean = ft_get_clean_line(input, ' ', 0);
 	argc = ft_tsize(clean, delim);
-	argc--;
 	free(clean);
-	return (argc);
+	return (argc - 1);
 }
 
 void	ft_free_argv(char **argv, int argc)
@@ -36,27 +35,18 @@ void	ft_free_argv(char **argv, int argc)
 
 int		ft_check_cmd(char *line, char *cmd)
 {
-	char	*tmp_cmp;
 	int		i;
 
 	i = 0;
-	while(line[i] != ':')
-		i++;
-	tmp_cmp = (char*)malloc(sizeof(char) * (i) + 1);
-	i = 0;
-	while (line [i] != ':')
+	while (line[i] != ':')
 	{
-		tmp_cmp[i] = line[i];
+		if (line[i] != cmd[i])
+			return (0);
 		i++;
 	}
-	tmp_cmp[i] = '\0';
-	if (ft_strcmp(tmp_cmp, cmd) == 0)
-	{
-		free(tmp_cmp);
-		return (1);
-	}
-	free(tmp_cmp);
-	return (0);
+	if (cmd[i] != '\0')
+		return (0);
+	return (1);
 }
 
 char	*ft_get_path(char *line)
@@ -85,7 +75,7 @@ char	*ft_get_exec_path(char *cmd)
 	int		fd;
 	int		index;
 
-	fd = open("./usr_local_bin", O_RDONLY);
+	fd = open("./bin", O_RDONLY);
 	index = 0;
 	while (ft_get_next_line(fd, &line) != 0)
 	{

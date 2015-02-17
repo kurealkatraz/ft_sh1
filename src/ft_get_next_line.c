@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 16:42:56 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/16 16:51:01 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/17 15:48:48 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int		ft_get_next_line(int fd, char **line)
 	if ((*line)[0] == '\0')
 	{
 		free(holder);
+		h_swiper = 0;
 		return (0);
 	}
 	return (1);
