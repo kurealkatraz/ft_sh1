@@ -6,7 +6,7 @@
 #    By: mgras <mgras@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/02/12 17:12:18 by tlebrize          #+#    #+#              #
-#    Updated: 2015/02/17 16:35:34 by mgras            ###   ########.fr        #
+#    Updated: 2015/02/20 17:10:29 by mgras            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,10 @@ SRC_NAME = ft_get_next_line.c \
 		   ft_core.c \
 		   ft_prompt.c \
 		   ft_get_argv.c \
-		   ft_arg_utility.c
+		   ft_arg_utility.c \
+		   ft_fill_env.c \
+		   ft_env_utility.c\
+		   ft_env_minilib.c
 
 SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
 

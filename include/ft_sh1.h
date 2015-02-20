@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 16:51:50 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/20 15:10:39 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/20 17:24:59 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,19 @@
 #include <stdio.h> //YAMETE
 
 # define BUF_SIZE 42
+
+typedef struct		s_env
+{
+	char			*name;
+	char			*value;
+	struct s_env	*next;
+}					t_env;
+
+typedef struct		s_pth
+{
+	char			*path;
+	struct s_pth	*next;
+}					t_pth;
 
 /*
 ** ft_prompt.c
@@ -70,5 +83,18 @@ void	ft_free_argv(char **argv, int argc);
 int		ft_check_cmd(char *line, char *cmd);
 char	*ft_get_path(char *line);
 char	*ft_get_exec_path(char *cmd);
+
+/*
+** env test
+*/
+t_env	*ft_fill_env(char **envp);
+t_env	*ft_env_init(t_env *env, char **envp);
+t_env	*ft_new_end(t_env *env, char *full);
+t_env	*ft_flash_alloc(t_env *env, char *full);
+int		ft_get_value_len(char *full, int name_size);
+int		ft_get_name_len(char *full);
+char	*ft_fill_value(char *value, char *full);
+char	*ft_fill_name(int len, char *name, char *full);
+void	ft_free_env(t_env *env);
 
 #endif
