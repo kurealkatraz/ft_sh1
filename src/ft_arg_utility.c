@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/16 16:46:59 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/17 17:49:25 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/20 15:28:01 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		ft_get_argc(char *input, char delim)
 	clean = ft_get_clean_line(input, ' ', 0);
 	argc = ft_tsize(clean, delim);
 	free(clean);
-	return (argc - 1);
+	return (argc);
 }
 
 void	ft_free_argv(char **argv, int argc)
@@ -28,6 +28,7 @@ void	ft_free_argv(char **argv, int argc)
 	int		ss;
 
 	ss = 0;
+	argc--;
 	while (ss <= argc)
 		free(argv[ss++]);
 	free(argv);

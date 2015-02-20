@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 20:48:24 by tlebrize          #+#    #+#             */
-/*   Updated: 2015/02/20 14:10:57 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/20 15:34:05 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,9 @@ void	ft_new_process(const char *path, char *const *argv, char *const *envp)
 
 	pid = fork();
 	if (pid == 0)
-	{
-		ft_putnbr(pid);
-		ft_putchar('\n');
 		execve(path, argv, envp);
-		exit(0);
-	}
 	else if (pid > 0)
-	{
-		ft_putnbr(pid);
-		ft_putchar('\n');
-		waitpid(pid, &stat, WIFEXITED(stat));
-	}
+		wait(&stat);
 	else
 		ft_putstr("Fork Error\n");
 }

@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/13 13:45:53 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/17 15:37:27 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/20 15:33:23 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,9 @@ char	**ft_get_argv(char *line, char d)
 
 	ts = 0;
 	pos = 0;
-	argv = (char**)malloc(sizeof(char*) * (ft_tsize(line, d) + 1));
-	argv[ft_tsize(line, d) + 1] = NULL;
-	while (line[pos] && ts <= ft_tsize(line, d))
+	argv = (char**)malloc(sizeof(char*) * (ft_tsize(line, d)) + 1);
+	argv[ft_tsize(line, d)] = NULL;
+	while (line[pos] && ts < ft_tsize(line, d))
 	{
 		ss = 0;
 		argv[ts] = (char*)malloc(sizeof(char) * (ft_ssize(line, d, pos) + 1));
