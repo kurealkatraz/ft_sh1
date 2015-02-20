@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 16:51:50 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/20 17:27:04 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/20 17:56:43 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <sys/wait.h>
 # include <sys/types.h>
 # include <signal.h>
-#include <stdio.h> //YAMETE
 
 # define BUF_SIZE 42
 
@@ -89,8 +88,8 @@ char	*ft_get_exec_path(char *cmd);
 */
 t_env	*ft_fill_env(char **envp);
 t_env	*ft_env_init(t_env *env, char **envp);
-t_env	*ft_new_end(t_env *env, char *full);
-t_env	*ft_flash_alloc(t_env *env, char *full);
+t_env	*ft_new_env_end(t_env *env, char *full);
+t_env	*ft_env_alloc(t_env *env, char *full);
 int		ft_get_value_len(char *full, int name_size);
 int		ft_get_name_len(char *full);
 char	*ft_fill_value(char *value, char *full);
@@ -100,5 +99,9 @@ void	ft_free_env(t_env *env);
 /*
 ** pth
 */
+t_pth	*ft_alloc_path(t_pth *pth, char *value, int *pos);
+t_pth	*ft_new_pth_end(t_pth *pth, int *pos, char *value);
+t_pth	*ft_fill_path(t_env *env);
+
 
 #endif
