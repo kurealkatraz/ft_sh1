@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 16:51:50 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/17 17:38:55 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/20 14:10:31 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include <sys/wait.h>
+# include <sys/types.h>
 
 # define BUF_SIZE 42
 
@@ -23,7 +25,7 @@
 */
 void	ft_process_arg(char **argv, int argc, char **envp);
 void	ft_prompt(char *prompt, char **envp);
-int		ft_new_process(const char *path, char *const *argv, char *const *envp);
+void	ft_new_process(const char *path, char *const *argv, char *const *envp);
 /*
 ** ft_get_next_line.c
 */

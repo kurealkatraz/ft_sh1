@@ -6,22 +6,33 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 20:48:24 by tlebrize          #+#    #+#             */
-/*   Updated: 2015/02/17 17:48:34 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/20 14:10:57 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh1.h"
 
-int		ft_new_process(const char *path, char *const *argv, char *const *envp)
+void	ft_new_process(const char *path, char *const *argv, char *const *envp)
 {
 	pid_t	pid;
+	int		stat;
 
 	pid = fork();
 	if (pid == 0)
+	{
+		ft_putnbr(pid);
+		ft_putchar('\n');
 		execve(path, argv, envp);
+		exit(0);
+	}
+	else if (pid > 0)
+	{
+		ft_putnbr(pid);
+		ft_putchar('\n');
+		waitpid(pid, &stat, WIFEXITED(stat));
+	}
 	else
-		wait(NULL);
-	return (0);
+		ft_putstr("Fork Error\n");
 }
 
 void	ft_process_arg(char **argv, int argc, char **envp)

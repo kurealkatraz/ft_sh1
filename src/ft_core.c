@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 18:52:03 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/17 17:37:08 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/20 13:50:58 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@ int		main(int argc, char **argv, char **envp)
 {
 	argv = argv;
 	argc = argc;
-	ft_prompt("$>", envp);
+	ft_prompt("λ-is-Δ →", envp);
 	return (0);
 }
