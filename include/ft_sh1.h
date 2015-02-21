@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 16:51:50 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/21 15:33:07 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/02/21 15:35:02 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,11 @@ int					ft_strcmp(const char *s1, const char *s2);
 size_t				ft_intlen(int n);
 void				ft_putnbr(int n);
 void				ft_bzero(char *str, size_t size);
+
+/*
+** ft_libstr_2.c
+*/
+char	*ft_strncpy(char *dst, char *src, int len);
 
 /*
 ** ft_get_argv.c
