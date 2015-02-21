@@ -6,11 +6,44 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 20:48:24 by tlebrize          #+#    #+#             */
-/*   Updated: 2015/02/20 17:59:21 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/21 11:46:10 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh1.h"
+
+void	ft_make_path(char *dest, char *path, char *file)
+{
+	path = (char*)malloc(sizeof(char) * (ft_strlen(path)
+				+ ft_strlen(file) + 2));
+	ft_strjoin(path, path);
+	ft_strjoin(path, "/");
+	ft_strjoin(path, file);
+}
+
+int		ft_find_bin(char *bin_name, t_pth *pth, char *path)
+{
+	DIR				*dirs;
+	struct dirent	*dire;
+	t_pth			*swap;
+
+	swap = pth
+	while (swap != NULL)
+	{
+		dirs = open(swap->path);
+		while ((dire = readdir(dirs)) != NULL)
+		{
+			if (0 == ft_strcmp(dire->d_name, bin_name))
+			{
+				ft_make_path(path, swap->p  ath, bin_name);
+				return (0);
+			}
+		}
+		closedir(dirs);
+		swap = swap->next;
+	}
+	return (-1);
+}
 
 void	ft_new_process(const char *path, char *const *argv, char *const *envp)
 {
