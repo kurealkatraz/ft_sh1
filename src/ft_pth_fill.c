@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/20 17:30:31 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/21 12:50:54 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/21 13:40:04 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ t_pth	*ft_fill_path(t_env *env)
 
 	pos = 0;
 	pth = (t_pth*)malloc(sizeof(t_pth));
-	pth = ft_alloc_path(pth, env->value, &pos);
+	pth->path = (char*)malloc(sizeof(char) * ft_strlen(getcwd(NULL, 1024)));
+	pth->path = getcwd(NULL, 1024);
 	pth->next = NULL;
 	while (pos < (int)ft_strlen(env->value))
 	{
