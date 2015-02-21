@@ -6,22 +6,23 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 20:48:24 by tlebrize          #+#    #+#             */
-/*   Updated: 2015/02/21 11:46:10 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/02/21 11:56:42 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh1.h"
 
-void	ft_make_path(char *dest, char *path, char *file)
+char	*ft_make_path(char *dest, char *path, char *file)
 {
 	path = (char*)malloc(sizeof(char) * (ft_strlen(path)
 				+ ft_strlen(file) + 2));
 	ft_strjoin(path, path);
 	ft_strjoin(path, "/");
 	ft_strjoin(path, file);
+	return (path);
 }
 
-int		ft_find_bin(char *bin_name, t_pth *pth, char *path)
+char	*ft_find_bin(char *bin_name, t_pth *pth, char *path)
 {
 	DIR				*dirs;
 	struct dirent	*dire;
@@ -35,14 +36,14 @@ int		ft_find_bin(char *bin_name, t_pth *pth, char *path)
 		{
 			if (0 == ft_strcmp(dire->d_name, bin_name))
 			{
-				ft_make_path(path, swap->p  ath, bin_name);
-				return (0);
+				path = ft_make_path(path, swap->path, bin_name);
+				return (path);
 			}
 		}
 		closedir(dirs);
 		swap = swap->next;
 	}
-	return (-1);
+	return (NULL);
 }
 
 void	ft_new_process(const char *path, char *const *argv, char *const *envp)
@@ -85,6 +86,7 @@ void	ft_prompt(char *prompt, char **envp)
 	char	**argv;
 	char	*buff;
 	int		argc;
+
 	int		i;
 
 	buff = (char*)malloc(sizeof(char) * 1024);

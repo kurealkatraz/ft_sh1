@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 16:51:50 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/21 11:48:46 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/02/21 11:56:44 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ typedef struct		s_pth
 void	ft_process_arg(char **argv, int argc, char **envp);
 void	ft_prompt(char *prompt, char **envp);
 void	ft_new_process(const char *path, char *const *argv, char *const *envp);
-void	ft_make_path(char *dest, char *path, char *file);
-int		ft_find_bin(char *bin_name, t_pth *pth, char *path);
+char	*ft_make_path(char *dest, char *path, char *file);
+char	*ft_find_bin(char *bin_name, t_pth *pth, char *path);
 /*
 ** ft_get_next_line.c
 */
