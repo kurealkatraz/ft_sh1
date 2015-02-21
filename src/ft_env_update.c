@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/21 14:00:48 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/21 15:16:01 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/21 15:44:10 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ char	**ft_yamete(t_env *env, char **envp)
 	int		ts;
 
 	tmp = env;
-	while (envp[ts])
+	ts =0;
+	while (envp[ts] != NULL)
 		free(envp[ts++]);
 	free (envp);
 	ts = 0;
