@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/21 14:00:48 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/21 15:44:10 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/21 17:28:59 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ char	*ft_daijobu(char *name, char *val)
 	str[i++] = '=';
 	while (val[j])
 		str[i++] = val[j++];
+	str[i] = '\0';
 	return (str);
 }
 
@@ -38,20 +39,24 @@ char	**ft_yamete(t_env *env, char **envp)
 	int		ts;
 
 	tmp = env;
-	ts =0;
+	ts = 0;
 	while (envp[ts] != NULL)
 		free(envp[ts++]);
 	free (envp);
 	ts = 0;
-	while (tmp != NULL && ts++)
+	while (tmp != NULL)
+	{
 		tmp = tmp->next;
-	envp = (char**)malloc(sizeof(char*) * (ts + 1));
+		ts++;
+	}
+	envp = (char**)malloc(sizeof(char*) * (ts) + 1);
 	envp[ts + 1] = NULL;
 	tmp = env;
 	ts = 0;
 	while (tmp != NULL)
 	{
-		envp[ts++] = ft_daijobu(tmp->name, tmp->value);
+		envp[ts] = ft_daijobu(tmp->name, tmp->value);
+		ts++;
 		tmp = tmp->next;
 	}
 	return (envp);

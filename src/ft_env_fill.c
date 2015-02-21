@@ -6,25 +6,11 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/20 16:01:05 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/21 12:50:02 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/21 17:06:17 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh1.h"
-
-t_env	*ft_env_alloc(t_env *env, char *full)
-{
-	int		name_size;
-	int		value_size;
-
-	name_size = ft_get_name_len(full);
-	env->name = (char*)malloc(sizeof(char) * (name_size + 1));
-	ft_fill_name(name_size, env->name, full);
-	value_size = ft_get_value_len(full, name_size);
-	env->value = (char*)malloc(sizeof(char) * (value_size + 1));
-	ft_fill_value(env->value, full);
-	return (env);
-}
 
 t_env	*ft_fill_env(char **envp)
 {
