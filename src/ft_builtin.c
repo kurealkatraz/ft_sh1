@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/21 15:13:15 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/21 15:21:32 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/21 15:33:12 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,32 @@ t_env	*ft_unsetenv(char *unset_name, t_env *env)
 	return (env);
 }
 
+int		ft_check_name(t_env *env, char *full)
+{
+	t_env	*swap;
+	char	*name;
+	int		len;
+
+	len = 0;
+	while (full[len] != '=' && full[len] != '\0')
+		len++;
+	name = (char *)malloc(sizeof(char) * (len + 1));
+	name = ft_strncpy(name, full, len);
+	name[len] = '\0';
+	swap = env;
+	while (swap != NULL)
+	{
+		if (0 == ft_strcmp(name, swap->name))
+		{
+			free(name);
+			return (0);
+		}
+			swap = swap->next;
+	}
+	free(name);
+	return (-1);
+}
+
 char	**ft_setenv(char **argv, t_env *env, char **envp)
 {
 	if (ft_check_name(env, argv[1]) == -1)
@@ -64,7 +90,6 @@ char	**ft_setenv(char **argv, t_env *env, char **envp)
 void	ft_env(t_env *env)
 {
 	t_env	*swap;
-
 	swap = env;
 	while (swap != NULL)
 	{

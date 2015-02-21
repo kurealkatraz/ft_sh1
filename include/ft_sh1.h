@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 16:51:50 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/21 15:20:10 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/21 15:33:07 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,5 +124,5 @@ int		ft_unsetenv_2(t_env *tmp, t_env *save, char *unset_name);
 t_env	*ft_unsetenv(char *unset_name, t_env *env);
 char	**ft_setenv(char **argv, t_env *env, char **envp);
 void	ft_env(t_env *env);
-
+int		ft_check_name(t_env *env, char *full);
 #endif
