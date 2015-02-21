@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 16:51:50 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/21 13:14:40 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/21 14:11:44 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,4 +105,10 @@ void				ft_free_env(t_env *env);
 t_pth				*ft_alloc_path(t_pth *pth, char *value, int *pos);
 t_pth				*ft_new_pth_end(t_pth *pth, int *pos, char *value);
 t_pth				*ft_fill_path(t_env *env);
+
+/*
+** Kawaii Bunduru
+*/
+char	*ft_daijobu(char *name, char *val);
+char	**ft_yamete(t_env *env, char **envp);
 #endif
