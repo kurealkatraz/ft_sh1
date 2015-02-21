@@ -6,50 +6,11 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/21 14:00:48 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/21 15:05:23 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/21 15:16:01 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh1.h"
-
-int		ft_dessune(t_env *tmp, t_env *save, char *unset_name)
-{
-	if (ft_strcmp(unset_name, tmp->name) == 0)
-	{
-		free (tmp->name);
-		free (tmp->value);
-		save->next = tmp->next;
-		free (tmp);
-		return (1);
-	}
-	else
-	{
-		save = save->next;
-		tmp = tmp->next;
-		return (0);
-	}
-}
-
-t_env	*ft_nani(char *unset_name, t_env *env)
-{
-	t_env	*tmp;
-	t_env	*save;
-
-	tmp = env;
-	if (ft_strcmp(unset_name, tmp->name) == 0)
-	{
-		free (tmp->name);
-		free (tmp->value);
-		env = env->next;
-		free (tmp);
-		return (env);
-	}
-	save = tmp;
-	tmp = tmp->next;
-	while (ft_dessune(tmp, save, unset_name) != 0)
-		;
-	return (env);
-}
 
 char	*ft_daijobu(char *name, char *val)
 {

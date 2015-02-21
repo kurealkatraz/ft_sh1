@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 20:48:24 by tlebrize          #+#    #+#             */
-/*   Updated: 2015/02/21 13:11:32 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/21 15:19:36 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,8 @@ void	ft_prompt(char *prompt, char **envp, t_env *env, t_pth *pth)
 		{
 			argv = ft_strsplit(buff, ' ');
 			argc = ft_get_argc(buff, ' ');
-			if (0 != ft_strcmp("exit\n", buff) && argc >= 0)
+			if (0 != ft_strcmp("exit\n", buff) && argc >= 0
+				&& ft_check_builtin(argv, env, envp) == -1)
 			{
 				ft_process_arg(argv, env, pth, envp);
 				ft_free_argv(argv, argc);

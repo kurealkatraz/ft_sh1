@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 16:51:50 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/21 14:11:44 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/21 15:20:10 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,11 @@ typedef struct		s_pth
 	char			*path;
 	struct s_pth	*next;
 }					t_pth;
+
+/*
+** core.c
+*/
+int		ft_check_builtin(char **argv, t_env *env, char **envp);
 
 /*
 ** ft_prompt.c
@@ -111,4 +116,13 @@ t_pth				*ft_fill_path(t_env *env);
 */
 char	*ft_daijobu(char *name, char *val);
 char	**ft_yamete(t_env *env, char **envp);
+
+/*
+** Builtin
+*/
+int		ft_unsetenv_2(t_env *tmp, t_env *save, char *unset_name);
+t_env	*ft_unsetenv(char *unset_name, t_env *env);
+char	**ft_setenv(char **argv, t_env *env, char **envp);
+void	ft_env(t_env *env);
+
 #endif
