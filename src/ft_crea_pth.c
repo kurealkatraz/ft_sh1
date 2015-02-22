@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pth_fill.c                                      :+:      :+:    :+:   */
+/*   ft_crea_pth.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/20 17:30:31 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/22 18:27:37 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/22 19:48:17 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,11 @@ t_pth	*ft_fill_path(t_env *env, t_pth *pth)
 	pth->path = (char*)malloc(sizeof(char) * ft_strlen(getcwd(NULL, 1024)));
 	pth->path = getcwd(NULL, 1024);
 	pth->next = NULL;
-	pos = ft_strlen(pth->path);
+	pos = 0;
 	while (pos < (int)ft_strlen(env->value))
 	{
-		pos++;
 		pth = ft_new_pth_end(pth, &pos, env->value);
+		pos++;
 	}
 	return (pth);
 }
