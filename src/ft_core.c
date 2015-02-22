@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 18:52:03 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/21 17:30:18 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/22 18:11:57 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,11 @@ int		main(int argc, char **argv, char **envp)
 	t_pth	*pth;
 
 	envp_clone = ft_clone_envp(envp);
+	env = (t_env*)malloc(sizeof(t_env));
+	pth = (t_pth*)malloc(sizeof(t_pth));
 	if (argv || argc)
-		env = ft_fill_env(envp_clone);
-	pth = ft_fill_path(env);
+		env = ft_fill_env(envp_clone, env, env);
+	pth = ft_fill_path(env, pth);
 	ft_prompt("$>", envp_clone, env, pth);
 	return (0);
 }

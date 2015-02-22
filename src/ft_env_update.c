@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/21 14:00:48 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/21 17:28:59 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/22 18:35:55 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,50 +14,10 @@
 
 char	*ft_daijobu(char *name, char *val)
 {
-	char	*str;
-	int		i;
-	int		j;
 
-	i = 0;
-	j = 0;
-	str = (char*)malloc(sizeof(char) * (ft_strlen(name) + ft_strlen(val) + 2));
-	while (name[i])
-	{
-		str[i] = name[i];
-		i++;
-	}
-	str[i++] = '=';
-	while (val[j])
-		str[i++] = val[j++];
-	str[i] = '\0';
-	return (str);
 }
 
 char	**ft_yamete(t_env *env, char **envp)
 {
-	t_env	*tmp;
-	int		ts;
-
-	tmp = env;
-	ts = 0;
-	while (envp[ts] != NULL)
-		free(envp[ts++]);
-	free (envp);
-	ts = 0;
-	while (tmp != NULL)
-	{
-		tmp = tmp->next;
-		ts++;
-	}
-	envp = (char**)malloc(sizeof(char*) * (ts) + 1);
-	envp[ts + 1] = NULL;
-	tmp = env;
-	ts = 0;
-	while (tmp != NULL)
-	{
-		envp[ts] = ft_daijobu(tmp->name, tmp->value);
-		ts++;
-		tmp = tmp->next;
-	}
-	return (envp);
+	
 }

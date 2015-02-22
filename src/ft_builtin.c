@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/21 15:13:15 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/21 16:44:35 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/22 18:23:09 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int		ft_check_name(t_env *env, char *full)
 char	**ft_setenv(char **argv, t_env *env, char **envp)
 {
 	if (ft_check_name(env, argv[1]) == -1)
-		ft_new_env_end(env, argv[1]);
+		ft_new_env_end(env, argv[1], 0, 0);
 	else
 		ft_putstr("lolno\n");
 	envp = ft_yamete(env, envp);

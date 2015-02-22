@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/20 17:30:31 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/21 13:40:04 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/22 18:27:37 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,14 @@ t_pth	*ft_new_pth_end(t_pth *pth, int *pos, char *value)
 	return (pth);
 }
 
-t_pth	*ft_fill_path(t_env *env)
+t_pth	*ft_fill_path(t_env *env, t_pth *pth)
 {
-	t_pth	*pth;
 	int		pos;
 
-	pos = 0;
-	pth = (t_pth*)malloc(sizeof(t_pth));
 	pth->path = (char*)malloc(sizeof(char) * ft_strlen(getcwd(NULL, 1024)));
 	pth->path = getcwd(NULL, 1024);
 	pth->next = NULL;
+	pos = ft_strlen(pth->path);
 	while (pos < (int)ft_strlen(env->value))
 	{
 		pos++;

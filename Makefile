@@ -6,7 +6,7 @@
 #    By: mgras <mgras@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/02/12 17:12:18 by tlebrize          #+#    #+#              #
-#    Updated: 2015/02/21 15:34:23 by mgras            ###   ########.fr        #
+#    Updated: 2015/02/22 18:04:16 by mgras            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,6 @@ SRC_NAME = ft_get_next_line.c \
 		   ft_get_argv.c \
 		   ft_arg_utility.c \
 		   ft_env_fill.c \
-		   ft_env_utility.c \
-		   ft_env_minilib.c \
 		   ft_pth_fill.c \
 		   ft_env_update.c \
 		   ft_builtin.c
