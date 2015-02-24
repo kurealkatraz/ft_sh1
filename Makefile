@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mgras <mgras@student.42.fr>                +#+  +:+       +#+         #
+#    By: nowl <nowl@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/02/12 17:12:18 by tlebrize          #+#    #+#              #
-#    Updated: 2015/02/22 19:38:37 by mgras            ###   ########.fr        #
+#    Updated: 2015/02/24 06:00:02 by nowl             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,8 @@ SRC_NAME =	ft_0_libstr.c \
 			ft_crea_pth.c \
 			ft_get_argv.c \
 			ft_get_next_line.c \
-			ft_modi_env.c \
-			ft_prompt.c
+			ft_prompt.c \
+			ft_update_envp.c
 
 SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
 

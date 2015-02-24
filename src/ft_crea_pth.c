@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_crea_pth.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nowl <nowl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/20 17:30:31 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/22 19:48:17 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/24 04:57:54 by nowl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_pth	*ft_new_pth_end(t_pth *pth, int *pos, char *value)
 
 	new_pth = (t_pth*)malloc(sizeof(t_pth));
 	new_pth->next = NULL;
-	ft_alloc_path(new_pth, value, pos);
+	new_pth = ft_alloc_path(new_pth, value, pos);
 	if (pth->next == NULL)
 		pth->next = new_pth;
 	else
@@ -50,17 +50,27 @@ t_pth	*ft_new_pth_end(t_pth *pth, int *pos, char *value)
 	return (pth);
 }
 
+t_env	*ft_search_path(t_env *env)
+{
+	while (ft_strcmp(env->name, "PATH") != 0 && env != NULL)
+		env = env->next;
+	return (env);
+}
+
 t_pth	*ft_fill_path(t_env *env, t_pth *pth)
 {
 	int		pos;
+	t_env	*swap;
 
+	swap = env;
+	swap = ft_search_path(swap);
 	pth->path = (char*)malloc(sizeof(char) * ft_strlen(getcwd(NULL, 1024)));
 	pth->path = getcwd(NULL, 1024);
 	pth->next = NULL;
 	pos = 0;
-	while (pos < (int)ft_strlen(env->value))
+	while (pos < (int)ft_strlen(swap->value))
 	{
-		pth = ft_new_pth_end(pth, &pos, env->value);
+		pth = ft_new_pth_end(pth, &pos, swap->value);
 		pos++;
 	}
 	return (pth);

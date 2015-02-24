@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_prompt.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nowl <nowl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 20:48:24 by tlebrize          #+#    #+#             */
-/*   Updated: 2015/02/21 15:24:18 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/24 06:13:14 by nowl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,13 @@ char	*ft_find_bin(char *bin_name, t_pth *pth, char *path)
 	return (NULL);
 }
 
-void	ft_new_process(const char *path, char *const *argv, char *const *envp)
+void	ft_new_process(char *path, char **argv, char **envp, t_env *env)
 {
 	pid_t	pid;
 	int		stat;
 
 	pid = fork();
+	envp = ft_update_envp(env, envp);
 	if (pid == 0)
 		execve(path, argv, envp);
 	else if (pid > 0)
@@ -81,7 +82,7 @@ void	ft_process_arg(char **argv, t_env *env, t_pth *pth, char **envp)
 	path = ft_find_bin(argv[0], pth, NULL);
 	if (path != NULL && env)
 	{
-		ft_new_process(path, argv, envp);
+		ft_new_process(path, argv, envp, env);
 		free(path);
 	}
 	else
@@ -110,12 +111,15 @@ void	ft_prompt(char *prompt, char **envp, t_env *env, t_pth *pth)
 		{
 			argv = ft_strsplit(buff, ' ');
 			argc = ft_get_argc(buff, ' ');
-			if (0 != ft_strcmp("exit\n", buff) && argc >= 0
-				&& ft_check_builtin(argv, env, envp) == -1)
+			if (argc <= 0)
+				ft_free_argv(argv, argc);
+			else if (ft_check_builtin(argv) == -1)
 			{
 				ft_process_arg(argv, env, pth, envp);
 				ft_free_argv(argv, argc);
 			}
+			else
+				env = ft_run_builtin(argv, env);
 		}
 	}
 }

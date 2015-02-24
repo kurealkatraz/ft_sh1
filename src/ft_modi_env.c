@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_modi_env.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nowl <nowl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/21 14:00:48 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/22 19:45:35 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/24 05:18:02 by nowl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh1.h"
 
-char	**ft_yamete(t_env *env, char **envp)
+char	**ft_yamete(t_env *env)
 {
 	t_env	*swap;
 	int		i;

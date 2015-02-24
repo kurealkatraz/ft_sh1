@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_builtin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nowl <nowl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/21 15:13:15 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/22 18:23:09 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/24 06:21:21 by nowl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,10 @@ int		ft_unsetenv_2(t_env *tmp, t_env *save, char *unset_name)
 		return (1);
 	}
 	else
-	{
-		save = save->next;
-		tmp = tmp->next;
 		return (0);
-	}
 }
 
-t_env	*ft_unsetenv(char *unset_name, t_env *env)
+t_env	*ft_unsetenv(t_env *env, char *unset_name)
 {
 	t_env	*tmp;
 	t_env	*save;
@@ -46,8 +42,11 @@ t_env	*ft_unsetenv(char *unset_name, t_env *env)
 	}
 	save = tmp;
 	tmp = tmp->next;
-	while (ft_unsetenv_2(tmp, save, unset_name) != 0)
-		;
+	while (ft_unsetenv_2(tmp, save, unset_name) != 1 && tmp != NULL)
+	{
+		save = save->next;
+		tmp = tmp->next;
+	}
 	return (env);
 }
 
@@ -77,14 +76,15 @@ int		ft_check_name(t_env *env, char *full)
 	return (-1);
 }
 
-char	**ft_setenv(char **argv, t_env *env, char **envp)
+t_env	*ft_setenv(t_env *env, char *value)
 {
-	if (ft_check_name(env, argv[1]) == -1)
-		ft_new_env_end(env, argv[1], 0, 0);
-	else
-		ft_putstr("lolno\n");
-	envp = ft_yamete(env, envp);
-	return (envp);
+	t_env	*tmp;
+
+	tmp = env;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	env = ft_new_env_end(env, value, 0, 0);
+	return (env);
 }
 
 void	ft_env(t_env *env)

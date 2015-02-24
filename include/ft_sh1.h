@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sh1.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nowl <nowl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 16:51:50 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/22 18:35:53 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/24 06:14:44 by nowl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,24 @@ typedef struct		s_pth
 }					t_pth;
 
 /*
+** ft_update_env
+*/
+char	*ft_fill_member(char *name, char *value, char *member);
+char	**ft_free_envp(char **envp);
+char	**ft_update_envp(t_env *env, char **envp);
+
+/*
 ** core.c
 */
-int		ft_check_builtin(char **argv, t_env *env, char **envp);
+int		ft_check_builtin(char **argv);
+t_env	*ft_run_builtin(char **argv, t_env *env);
 
 /*
 ** ft_prompt.c
 */
 void				ft_process_arg(char **argv, t_env *env, t_pth *pth, char **envp);
 void				ft_prompt(char *prompt, char **envp, t_env *env, t_pth *pth);
-void				ft_new_process(const char *path, char *const *argv, char *const *envp);
+void				ft_new_process(char *path, char **argv, char **envp, t_env *env);
 char				*ft_make_path(char *dest, char *path, char *file);
 char				*ft_find_bin(char *bin_name, t_pth *pth, char *path);
 /*
@@ -97,7 +105,7 @@ char				*ft_get_path(char *line);
 char				*ft_get_exec_path(char *cmd);
 
 /*
-** env
+** ft_crea_env
 */
 t_env	*ft_fill_env(char **envp, t_env *env, t_env *tmp);
 t_env	*ft_new_env_link(t_env *env);
@@ -106,11 +114,12 @@ int		ft_get_va_len(char *val);
 t_env	*ft_new_env_end(t_env *env, char *full, int ts, int ss);
 
 /*
-** pth
+** ft_crea_pth
 */
 t_pth	*ft_alloc_path(t_pth *pth, char *value, int *pos);
 t_pth	*ft_new_pth_end(t_pth *pth, int *pos, char *value);
 t_pth	*ft_fill_path(t_env *env, t_pth *pth);
+t_env	*ft_search_path(t_env *env);
 
 
 /*
@@ -123,8 +132,8 @@ char	**ft_yamete(t_env *env, char **envp);
 ** Builtin
 */
 int		ft_unsetenv_2(t_env *tmp, t_env *save, char *unset_name);
-t_env	*ft_unsetenv(char *unset_name, t_env *env);
-char	**ft_setenv(char **argv, t_env *env, char **envp);
+t_env	*ft_unsetenv(t_env *env, char *unset_name);
+t_env	*ft_setenv(t_env *env, char *value);
 void	ft_env(t_env *env);
 int		ft_check_name(t_env *env, char *full);
 #endif

@@ -3,38 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   ft_core.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nowl <nowl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 18:52:03 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/22 18:11:57 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/24 05:30:18 by nowl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh1.h"
 
-int		ft_check_builtin(char **argv, t_env *env, char **envp)
+int		ft_check_builtin(char **argv)
 {
 	if (0 == ft_strcmp(argv[0], "cd"))
-	{
-		ft_putstr("builtin_cd");
 		return (0);
-	}
 	else if (0 == ft_strcmp(argv[0], "unsetenv"))
-	{
-		ft_putstr("builtin_unsetenv\n");
 		return (0);
-	}
 	else if (0 == ft_strcmp(argv[0], "setenv"))
-	{
-		envp = ft_setenv(argv, env, envp);
 		return (0);
-	}
 	else if (0 == ft_strcmp(argv[0], "env"))
-	{
-		ft_env(env);
 		return (0);
-	}
+	else if (0 == ft_strcmp(argv[0], "exit"))
+		return (0);
 	return(-1);
+}
+
+t_env	*ft_run_builtin(char **argv, t_env *env)
+{
+	if (0 == ft_strcmp(argv[0], "cd"))
+		ft_putstr("cd");
+	else if (0 == ft_strcmp(argv[0], "unsetenv"))
+		ft_unsetenv(env, argv[1]);
+	else if (0 == ft_strcmp(argv[0], "setenv"))
+		ft_setenv(env, argv[1]);
+	else if (0 == ft_strcmp(argv[0], "env"))
+		ft_env(env);
+	else if (0 == ft_strcmp(argv[0], "exit"))
+		return (NULL);
+	return(env);
 }
 
 char	**ft_clone_envp(char **envp)
