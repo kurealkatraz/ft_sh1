@@ -6,7 +6,7 @@
 /*   By: nowl <nowl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 20:48:24 by tlebrize          #+#    #+#             */
-/*   Updated: 2015/02/24 06:13:14 by nowl             ###   ########.fr       */
+/*   Updated: 2015/02/24 09:30:37 by nowl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,11 +93,27 @@ void	ft_process_arg(char **argv, t_env *env, t_pth *pth, char **envp)
 	}
 }
 
-void	ft_prompt(char *prompt, char **envp, t_env *env, t_pth *pth)
+void	ft_split_prompt(char *buff, t_env *env, t_pth *pth, char **envp)
 {
 	char	**argv;
-	char	*buff;
 	int		argc;
+
+	argv = ft_strsplit(buff, ' ');
+	argc = ft_get_argc(buff, ' ');
+	if (argc <= 0)
+		ft_free_argv(argv, argc);
+	else if (ft_check_builtin(argv) == -1)
+	{
+		ft_process_arg(argv, env, pth, envp);
+		ft_free_argv(argv, argc);
+	}
+	else
+		env = ft_run_builtin(argv, env);
+}
+
+void	ft_prompt(char *prompt, char **envp, t_env *env, t_pth *pth)
+{
+	char	*buff;
 	int		i;
 
 	buff = (char*)malloc(sizeof(char) * 1024);
@@ -108,18 +124,6 @@ void	ft_prompt(char *prompt, char **envp, t_env *env, t_pth *pth)
 		i = read(0, (char*)buff, 1024);
 		buff[i] = '\0';
 		if (i > 1)
-		{
-			argv = ft_strsplit(buff, ' ');
-			argc = ft_get_argc(buff, ' ');
-			if (argc <= 0)
-				ft_free_argv(argv, argc);
-			else if (ft_check_builtin(argv) == -1)
-			{
-				ft_process_arg(argv, env, pth, envp);
-				ft_free_argv(argv, argc);
-			}
-			else
-				env = ft_run_builtin(argv, env);
-		}
+			ft_split_prompt(buff, env, pth, envp);
 	}
 }
