@@ -6,7 +6,7 @@
 /*   By: nowl <nowl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 16:51:50 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/24 06:14:44 by nowl             ###   ########.fr       */
+/*   Updated: 2015/02/24 06:38:37 by nowl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,11 @@ typedef struct		s_pth
 	char			*path;
 	struct s_pth	*next;
 }					t_pth;
+
+/*
+** ft_cd
+*/
+t_env	*ft_cd(t_env *env, char *path);
 
 /*
 ** ft_update_env

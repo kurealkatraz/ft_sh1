@@ -6,7 +6,7 @@
 /*   By: nowl <nowl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 18:52:03 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/24 05:30:18 by nowl             ###   ########.fr       */
+/*   Updated: 2015/02/24 06:28:07 by nowl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		ft_check_builtin(char **argv)
 t_env	*ft_run_builtin(char **argv, t_env *env)
 {
 	if (0 == ft_strcmp(argv[0], "cd"))
-		ft_putstr("cd");
+		ft_cd(env, argv[1]);
 	else if (0 == ft_strcmp(argv[0], "unsetenv"))
 		ft_unsetenv(env, argv[1]);
 	else if (0 == ft_strcmp(argv[0], "setenv"))
