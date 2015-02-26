@@ -31,10 +31,10 @@ ft_prompt(t_env *env)
 		if ft_is_builtin(argv[0], env) == TRUE
 			env = ft_builtin(argv, env)
 		else
-			if ft_find_bin(argv[0], env) = NULL
+			if (path = ft_find_bin(argv[0], env)) == NULL
 				write(cmd_not_found)
 			else
-				ft_new_process(argv, env)
+				ft_new_process(path, argv, env)
 	end
 
 ft_read(int fd)
@@ -68,3 +68,28 @@ ft_builtin(argv, env)
 		return (ft_builtin_setenv(argv, env))
 	else
 		return (ft_builtin_env(argv, env))
+
+ft_find_bin(char *bin, t_env *env)
+	path = ft_path(env)
+	while (path[x] != NULL)
+		opendir path[x]
+		if (strcmp(bin, dire->d_name) == 0)
+			return path[x]
+		x++
+	return NULL
+
+ft_path(t_env *env)
+	while (env->name != PATH)
+		env = env->next
+	env->value = path[0] + ':' + path[1] + ':' + path[X]
+	return path
+
+ft_new_process(char *path, char **argv, t_env *env)
+	envp = ft_get_envp(env)
+	fork
+	fils
+		execve(path, argv, envp)
+		kill
+	pere
+		wait
+
