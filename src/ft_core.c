@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/26 15:24:55 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/26 16:52:42 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/26 18:07:16 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,23 @@ char	*ft_read(void)
 void	ft_prompt(char **envp, t_env *env)
 {
 	char	*line;
+	char	**argv;
+	int		i;
 
+	i = 0;
 	line = NULL;
 	while (42)
 	{
-		ft_putstr("MOL>");
+		ft_putstr("/_| _,\n  | /_");
 		line = ft_read();
-		ft_putstr(line);
+		argv = ft_strsplit((const char*)line, ' ');
+		while (argv[i] != NULL)
+			ft_putstr(argv[i++]);
 		free(line);
+		i = 0;
+		while (argv[i] != NULL)
+			free(argv[i++]);
+		free(argv);
 		ft_putchar('\n');
 	}
 	envp = envp;

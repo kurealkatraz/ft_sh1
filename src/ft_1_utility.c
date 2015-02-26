@@ -6,11 +6,12 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/26 15:57:25 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/26 16:34:22 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/26 18:01:55 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_minishell.h"
+#include <string.h>
 
 char	*ft_strncpy(char *dst, const char *src, size_t n)
 {
@@ -57,6 +58,36 @@ char	*ft_strdup(const char *src)
 		return (NULL);
 	ft_strcpy(dest, src);
 	return (dest);
+}
+
+char	**ft_strsplit(const char *str, char c)
+{
+	char	**new;
+	int		i;
+	int		j;
+	int		k;
+
+	i = 0;
+	j = 0;
+	k = 0;
+	while (str[i] != '\0')
+		j = (str[i++] == c ? j + 1 : j);
+	new = (char**)malloc(sizeof(char*) * (j + 2));
+	i = 0;
+	j = 0;
+	while (str[i] != '\0')
+	{
+		j = i;
+		while (str[j] != c && str[j] != '\0')
+			j++;
+		new[k] = (char*)malloc(sizeof(char) * (j - i + 1));
+		new[k] = strncpy(new[k], str + i, j - i);//YAMETE
+		new[k][j - i] = '\0';
+		i = (j + 1);
+		k++;
+	}
+	new[k] = NULL;
+	return (new);
 }
 
 int		ft_strcmp(const char *s1, const char *s2)
