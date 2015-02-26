@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 20:48:24 by tlebrize          #+#    #+#             */
-/*   Updated: 2015/02/24 15:08:08 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/26 13:16:42 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,13 @@ char	**ft_new_process(char *path, char **argv, char **envp)
 		ft_putnbr(pid);
 		ft_putchar('\n');
 		execve(path, argv, envp);
+		kill(getpid(), SIGKILL);
 	}
 	else if (pid > 0)
 		wait(&stat);
 	else
 		ft_putstr("Fork Error\n");
-	ft_putnbr(pid);
+	ft_putnbr((int)getpid());
 	ft_putchar('\n');
 	return (envp);
 }
