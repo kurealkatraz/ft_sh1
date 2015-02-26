@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/26 15:30:04 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/26 15:39:31 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/26 16:53:16 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@ void	ft_putstr(char *str)
 	int		i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 		ft_putchar(str[i++]);
 }
 
-int		ft_strlen(char *str)
+int		ft_strlen(const char *str)
 {
 	int		i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 		i++;
 	return (i);
 }
@@ -41,12 +41,12 @@ int		ft_tablen(char **tab)
 	int		ts;
 
 	ts = 0;
-	while(tab[ts] != NULL)
+	while (tab[ts] != NULL)
 		ts++;
 	return (ts);
 }
 
-char	*ft_strcpy(char *dst, char *src)
+char	*ft_strcpy(char *dst, const char *src)
 {
 	int		ss;
 

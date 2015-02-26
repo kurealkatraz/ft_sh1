@@ -6,11 +6,39 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/26 15:24:55 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/26 16:06:07 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/26 16:52:42 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_minishell.h"
+
+char	*ft_read(void)
+{
+	char	*line;
+
+	if (ft_get_next_line(0, &line) == 1)
+		return (line);
+	else
+		exit (0);
+	return (NULL);
+}
+
+void	ft_prompt(char **envp, t_env *env)
+{
+	char	*line;
+
+	line = NULL;
+	while (42)
+	{
+		ft_putstr("MOL>");
+		line = ft_read();
+		ft_putstr(line);
+		free(line);
+		ft_putchar('\n');
+	}
+	envp = envp;
+	env = env;
+}
 
 int		main(int argc, char **argv, char **envp)
 {
@@ -19,8 +47,8 @@ int		main(int argc, char **argv, char **envp)
 	env = (t_env*)malloc(sizeof(t_env));
 	env = NULL;
 	env = ft_get_env(env, envp);
+	ft_prompt(envp, env);
 	argv = argv;
 	argc = argc;
-	envp = envp;
 	return (0);
 }

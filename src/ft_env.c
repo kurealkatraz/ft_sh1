@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/26 15:46:15 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/26 16:04:10 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/26 16:22:10 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_env	*ft_new_env(t_env *env, char *full)
 	new_mem->name = (char*)malloc(sizeof(char) * (ts + 1));
 	new_mem->value = (char*)malloc(sizeof(char) * (ft_strlen(full) - ts));
 	ft_strncpy(new_mem->name, full, ts);
-	ts++;		//OVERPASS '='
+	ts++;
 	while (full[ts])
 		new_mem->value[ss++] = full[ts++];
 	new_mem->value[ss] = '\0';
