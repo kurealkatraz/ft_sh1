@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_prompt.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nowl <nowl@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 20:48:24 by tlebrize          #+#    #+#             */
-/*   Updated: 2015/02/24 09:30:37 by nowl             ###   ########.fr       */
+/*   Updated: 2015/02/24 15:08:08 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,29 +60,36 @@ char	*ft_find_bin(char *bin_name, t_pth *pth, char *path)
 	return (NULL);
 }
 
-void	ft_new_process(char *path, char **argv, char **envp, t_env *env)
+char	**ft_new_process(char *path, char **argv, char **envp)
 {
 	pid_t	pid;
 	int		stat;
 
 	pid = fork();
-	envp = ft_update_envp(env, envp);
 	if (pid == 0)
+	{
+		ft_putnbr(pid);
+		ft_putchar('\n');
 		execve(path, argv, envp);
+	}
 	else if (pid > 0)
 		wait(&stat);
 	else
 		ft_putstr("Fork Error\n");
+	ft_putnbr(pid);
+	ft_putchar('\n');
+	return (envp);
 }
 
-void	ft_process_arg(char **argv, t_env *env, t_pth *pth, char **envp)
+char	**ft_process_arg(char **argv, t_env *env, t_pth *pth, char **envp)
 {
 	char	*path;
 
 	path = ft_find_bin(argv[0], pth, NULL);
 	if (path != NULL && env)
 	{
-		ft_new_process(path, argv, envp, env);
+		envp = ft_update_envp(env, envp);
+		envp = ft_new_process(path, argv, envp);
 		free(path);
 	}
 	else
@@ -91,9 +98,10 @@ void	ft_process_arg(char **argv, t_env *env, t_pth *pth, char **envp)
 		ft_putstr(argv[0]);
 		ft_putchar('\n');
 	}
+	return (envp);
 }
 
-void	ft_split_prompt(char *buff, t_env *env, t_pth *pth, char **envp)
+char	**ft_split_prompt(char *buff, t_env *env, t_pth *pth, char **envp)
 {
 	char	**argv;
 	int		argc;
@@ -104,11 +112,12 @@ void	ft_split_prompt(char *buff, t_env *env, t_pth *pth, char **envp)
 		ft_free_argv(argv, argc);
 	else if (ft_check_builtin(argv) == -1)
 	{
-		ft_process_arg(argv, env, pth, envp);
+		envp = ft_process_arg(argv, env, pth, envp);
 		ft_free_argv(argv, argc);
 	}
 	else
 		env = ft_run_builtin(argv, env);
+	return (envp);
 }
 
 void	ft_prompt(char *prompt, char **envp, t_env *env, t_pth *pth)
@@ -124,6 +133,6 @@ void	ft_prompt(char *prompt, char **envp, t_env *env, t_pth *pth)
 		i = read(0, (char*)buff, 1024);
 		buff[i] = '\0';
 		if (i > 1)
-			ft_split_prompt(buff, env, pth, envp);
+			envp = ft_split_prompt(buff, env, pth, envp);
 	}
 }

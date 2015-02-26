@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_update_envp.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nowl <nowl@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/24 05:33:55 by nowl              #+#    #+#             */
-/*   Updated: 2015/02/24 06:15:05 by nowl             ###   ########.fr       */
+/*   Updated: 2015/02/24 14:20:55 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_fill_member(char *name, char *value, char *member)
 		member[ts] = name[ts];
 		ts++;
 	}
-	member[ts++] = '\n';
+	member[ts++] = '=';
 	while (value[ss])
 		member[ts++] = value[ss++];
 	member[ts] = '\0';
@@ -49,7 +49,7 @@ char	**ft_update_envp(t_env *env, char **envp)
 
 	tmp = env;
 	ts = 0;
-	envp = ft_free_envp(envp);
+	ft_free_envp(envp);
 	while (tmp != NULL)
 	{
 		tmp = tmp->next;

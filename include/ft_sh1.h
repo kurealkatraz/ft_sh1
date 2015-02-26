@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sh1.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nowl <nowl@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 16:51:50 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/24 09:34:17 by nowl             ###   ########.fr       */
+/*   Updated: 2015/02/24 15:09:33 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,11 @@ t_env	*ft_run_builtin(char **argv, t_env *env);
 /*
 ** ft_prompt.c
 */
-void				ft_process_arg(char **argv, t_env *env, t_pth *pth, char **envp);
+
 void				ft_prompt(char *prompt, char **envp, t_env *env, t_pth *pth);
-void				ft_split_prompt(char *buff, t_env *env, t_pth *pth, char **envp);
-void				ft_new_process(char *path, char **argv, char **envp, t_env *env);
+char				**ft_new_process(char *path, char **argv, char **envp);
+char				**ft_process_arg(char **argv, t_env *env, t_pth *pth, char **envp);
+char				**ft_split_prompt(char *buff, t_env *env, t_pth *pth, char **envp);
 char				*ft_make_path(char *dest, char *path, char *file);
 char				*ft_find_bin(char *bin_name, t_pth *pth, char *path);
 /*

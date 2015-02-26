@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_builtin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nowl <nowl@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/21 15:13:15 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/24 06:21:21 by nowl             ###   ########.fr       */
+/*   Updated: 2015/02/26 10:26:07 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ t_env	*ft_unsetenv(t_env *env, char *unset_name)
 	tmp = env;
 	if (ft_strcmp(unset_name, tmp->name) == 0)
 	{
+		env = env->next;
 		free (tmp->name);
 		free (tmp->value);
-		env = env->next;
 		free (tmp);
 		return (env);
 	}
@@ -90,6 +90,7 @@ t_env	*ft_setenv(t_env *env, char *value)
 void	ft_env(t_env *env)
 {
 	t_env	*swap;
+	
 	swap = env;
 	while (swap != NULL)
 	{
