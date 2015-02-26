@@ -6,7 +6,7 @@
 #    By: nowl <nowl@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/02/12 17:12:18 by tlebrize          #+#    #+#              #
-#    Updated: 2015/02/24 06:38:55 by nowl             ###   ########.fr        #
+#    Updated: 2015/02/26 10:42:22 by tlebrize         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,8 @@ SRC_NAME =	ft_0_libstr.c \
 			ft_args.c \
 			ft_builtin.c \
 			ft_core.c \
-			ft_crea_env.c \
-			ft_crea_pth.c \
+			ft_env.c \
+			ft_pth.c \
 			ft_get_argv.c \
 			ft_get_next_line.c \
 			ft_prompt.c \
