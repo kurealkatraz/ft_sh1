@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/26 15:34:46 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/27 12:09:38 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/27 12:59:56 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ char	*ft_strncpy(char *dst, const char *src, size_t n);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strdup(const char *src);
 int		ft_strcmp(const char *s1, const char *s2);
+char	*ft_strcat(char *s1, char *s2, char delim);
 
 /*
 **	ft_2_utility.c (Strsplit)
