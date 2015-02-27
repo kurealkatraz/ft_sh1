@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/26 15:34:46 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/27 14:21:52 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/27 15:36:40 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int		ft_get_next_line(int fd, char **line);
 char	**ft_get_envp(t_env *env);
 t_env	*ft_new_env(t_env *env, char *full);
 t_env	*ft_get_env(t_env *env, char **envp);
+t_env	*ft_free_member(t_env *current, t_env *saved);
 
 /*
 **	ft_0_utility.c
@@ -85,6 +86,13 @@ t_env	*ft_builtin(char **argv, t_env *env);
 t_env	*ft_builtin_env(t_env *env);
 
 /*
+**	ft_builtin_fnc.c
+*/
+void	ft_env(t_env *env);
+t_env	*ft_setenv(t_env *env, char *mod);
+t_env	*ft_unsetenv(t_env *env, char *mod);
+
+/*
 ** ft_new_process.c
 */
 void	ft_new_process(char *path, char **argv, t_env *env);
@@ -95,5 +103,10 @@ t_pth	*ft_get_pth(t_env *env);
 **	ft_0_free.c
 */
 void	ft_free_argv(char **argv);
+
+/*
+**	0_error.c
+*/
+void	e_no_match_env(char *erred_str);
 
 #endif
