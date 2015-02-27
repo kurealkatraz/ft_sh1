@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/26 15:34:46 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/27 10:14:49 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/27 10:16:01 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,10 @@ int		ft_strcmp(const char *s1, const char *s2);
 **	ft_2_utility.c
 */
 char	*ft_get_clean_line(char *str, char delim);
+
+/*
+**	ft_free.c
+*/
+void	ft_free_argv(char **argv);
 
 #endif
