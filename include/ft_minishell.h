@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/26 15:34:46 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/27 13:41:13 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/02/27 14:21:52 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@ typedef struct		s_env
 	char			*value;
 	struct s_env	*next;
 }					t_env;
+
+typedef struct		s_pth
+{
+	char			*path;
+	struct s_env	*next;
+}					t_pth;
 
 /*
 **	ft_core.c
@@ -60,7 +66,7 @@ char	*ft_strncpy(char *dst, const char *src, size_t n);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strdup(const char *src);
 int		ft_strcmp(const char *s1, const char *s2);
-char	*ft_strcat(char *s1, char *s2, char delim);
+char	*ft_strcat(char *s1, char *s2);
 
 /*
 **	ft_2_utility.c (Strsplit)
@@ -82,7 +88,8 @@ t_env	*ft_builtin_env(t_env *env);
 ** ft_new_process.c
 */
 void	ft_new_process(char *path, char **argv, t_env *env);
-
+char	*ft_find_bin(char *bin, t_env *env);
+t_pth	*ft_get_pth(t_env *env);
 
 /*
 **	ft_0_free.c

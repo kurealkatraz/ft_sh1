@@ -6,11 +6,11 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/26 15:46:15 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/27 13:23:33 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/02/27 14:13:33 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_minishell.h"
 
 char	**ft_get_envp(t_env *env)
 {

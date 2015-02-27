@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/26 15:24:55 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/27 11:12:05 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/27 14:12:41 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,12 @@ void	ft_prompt(char **envp, t_env *env)
 		if (1 == ft_is_builtin(argv[0]))
 			env = ft_builtin(argv, env);
 		else
-			ft_putstr(argv[0]);
+		{
+			if ((path = ft_find_bin(argv[0], env)) == NULL)
+				ft_putstr("not found\n");
+			else
+				ft_new_process(path, argv, env);`
+		}
 		ft_free_argv(argv);
 		argv = NULL;
 		ft_putchar('\n');

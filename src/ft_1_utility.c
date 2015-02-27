@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/26 15:57:25 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/27 14:03:26 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/27 14:15:46 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,25 +26,18 @@ char	*ft_strncpy(char *dst, const char *src, size_t n)
 	return (dst);
 }
 
-char	*ft_strcat(char *s1, char *s2, char delim)
+char	*ft_strcat(char *s1, char *s2)
 {
-	char	*full;
 	int		ts;
 	int		ss;
 
-	full = (char*)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 2));
-	ts = 0;
 	ss = 0;
-	while (s1[ts])
-	{
-		full[ts] = s1[ts];
+	ts = 0;
+	while(s1[ts])
 		ts++;
-	}
-	full[ts++] = delim;
-	while(s2[ss])
-		full[ts++] = s2[ss++]
-	full[ts] = '\0';
-	return (full);
+	while (s2[ss])
+		s1[ts++] = s2[ss++];
+	return (s1);
 }
 
 char	*ft_strjoin(char *s1, char *s2)
