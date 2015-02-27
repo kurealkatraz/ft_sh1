@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/26 15:34:46 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/27 10:37:44 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/02/27 12:09:38 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,16 @@ char	*ft_strcpy(char *dst, const char *src);
 char	*ft_strncpy(char *dst, const char *src, size_t n);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strdup(const char *src);
-char	**ft_strsplit(const char *str, char delim);
 int		ft_strcmp(const char *s1, const char *s2);
 
 /*
-**	ft_2_utility.c
+**	ft_2_utility.c (Strsplit)
 */
+int		ft_get_clean_len(int start, int end, char *str, char delim);
+int		ft_get_end(char *str, char delim);
 char	*ft_get_clean_line(char *str, char delim);
+char	**ft_alloc_tab(char *str, char c);
+char	**ft_strsplit(const char *str, char c);
 
 /*
 ** ft_builtin_utility.c
@@ -72,8 +75,9 @@ char	*ft_get_clean_line(char *str, char delim);
 int		ft_is_builtin(char *name);
 t_env	*ft_builtin(char **argv, t_env *env);
 t_env	*ft_builtin_env(t_env *env);
+
 /*
-**	ft_free.c
+**	ft_0_free.c
 */
 void	ft_free_argv(char **argv);
 

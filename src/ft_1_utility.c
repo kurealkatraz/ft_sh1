@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/26 15:57:25 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/26 19:13:44 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/27 10:46:12 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,35 +58,6 @@ char	*ft_strdup(const char *src)
 		return (NULL);
 	ft_strcpy(dest, src);
 	return (dest);
-}
-
-char	**ft_strsplit(const char *str, char c)
-{
-	char	**new_tab;
-	int		i;
-	int		j;
-	int		k;
-
-	i = 0;
-	j = 0;
-	k = 0;
-	while (str[i] != '\0')
-		j = (str[i++] == c ? j + 1 : j);
-	new_tab = (char**)malloc(sizeof(char*) * (j + 1));
-	new_tab[j + 1] = NULL;
-	i = 0;
-	j = 0;
-	while (str[i] != '\0')
-	{
-		j = i;
-		while (str[j] != c && str[j] != '\0')
-			j++;
-		new_tab[k] = (char*)malloc(sizeof(char) * (j - i + 1));
-		new_tab[k] = ft_strncpy(new_tab[k], str + i, j - i);
-		new_tab[k++][j - i] = '\0';
-		i = (j + 1);
-	}
-	return (new_tab);
 }
 
 int		ft_strcmp(const char *s1, const char *s2)

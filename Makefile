@@ -6,7 +6,7 @@
 #    By: mgras <mgras@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/02/26 15:24:20 by mgras             #+#    #+#              #
-#    Updated: 2015/02/27 10:39:40 by tlebrize         ###   ########.fr        #
+#    Updated: 2015/02/27 10:54:41 by mgras            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,8 @@ SRC_PATH = ./src/
 
 SRC_NAME =	ft_0_utility.c \
 			ft_1_utility.c \
+			ft_2_utility.c \
+			ft_0_free.c \
 			ft_builtin_utility.c \
 			ft_env.c \
 			ft_core.c \

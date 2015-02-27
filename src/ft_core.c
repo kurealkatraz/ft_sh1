@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/26 15:24:55 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/27 10:41:34 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/02/27 11:12:05 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ void	ft_prompt(char **envp, t_env *env)
 			env = ft_builtin(argv, env);
 		else
 			ft_putstr(argv[0]);
-		//ft_free_argv(argv);
+		ft_free_argv(argv);
+		argv = NULL;
 		ft_putchar('\n');
 	}
 	envp = envp;
