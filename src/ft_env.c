@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/26 15:46:15 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/27 13:16:45 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/02/27 13:23:33 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ t_env	*ft_get_env(t_env *env, char **envp)
 	ts = 0;
 	while (envp[ts + 1] != NULL)
 		ts++;
-	while (ts > 0)
+	while (ts >= 0)
 		env = ft_new_env(env, envp[ts--]);
 	return (env);
 }
