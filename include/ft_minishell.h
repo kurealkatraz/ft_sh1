@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/26 15:34:46 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/27 13:11:58 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/02/27 13:41:13 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,12 @@ char	**ft_strsplit(const char *str, char c);
 int		ft_is_builtin(char *name);
 t_env	*ft_builtin(char **argv, t_env *env);
 t_env	*ft_builtin_env(t_env *env);
+
+/*
+** ft_new_process.c
+*/
+void	ft_new_process(char *path, char **argv, t_env *env);
+
 
 /*
 **	ft_0_free.c
