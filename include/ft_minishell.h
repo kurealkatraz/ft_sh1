@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/26 15:34:46 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/26 17:16:24 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/02/27 10:14:49 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,10 @@ char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strdup(const char *src);
 char	**ft_strsplit(const char *str, char delim);
 int		ft_strcmp(const char *s1, const char *s2);
+
+/*
+**	ft_2_utility.c
+*/
+char	*ft_get_clean_line(char *str, char delim);
 
 #endif
