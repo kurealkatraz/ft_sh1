@@ -6,12 +6,11 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/26 15:57:25 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/27 13:05:18 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/27 14:03:26 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_minishell.h"
-#include <string.h>
 
 char	*ft_strncpy(char *dst, const char *src, size_t n)
 {
