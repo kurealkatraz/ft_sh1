@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/26 15:57:25 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/26 18:01:55 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/02/26 19:13:44 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_strncpy(char *dst, const char *src, size_t n)
 		ss++;
 	}
 	dst[ss] = '\0';
-	return (0);
+	return (dst);
 }
 
 char	*ft_strjoin(char *s1, char *s2)
@@ -62,7 +62,7 @@ char	*ft_strdup(const char *src)
 
 char	**ft_strsplit(const char *str, char c)
 {
-	char	**new;
+	char	**new_tab;
 	int		i;
 	int		j;
 	int		k;
@@ -72,7 +72,8 @@ char	**ft_strsplit(const char *str, char c)
 	k = 0;
 	while (str[i] != '\0')
 		j = (str[i++] == c ? j + 1 : j);
-	new = (char**)malloc(sizeof(char*) * (j + 2));
+	new_tab = (char**)malloc(sizeof(char*) * (j + 1));
+	new_tab[j + 1] = NULL;
 	i = 0;
 	j = 0;
 	while (str[i] != '\0')
@@ -80,14 +81,12 @@ char	**ft_strsplit(const char *str, char c)
 		j = i;
 		while (str[j] != c && str[j] != '\0')
 			j++;
-		new[k] = (char*)malloc(sizeof(char) * (j - i + 1));
-		new[k] = strncpy(new[k], str + i, j - i);//YAMETE
-		new[k][j - i] = '\0';
+		new_tab[k] = (char*)malloc(sizeof(char) * (j - i + 1));
+		new_tab[k] = ft_strncpy(new_tab[k], str + i, j - i);
+		new_tab[k++][j - i] = '\0';
 		i = (j + 1);
-		k++;
 	}
-	new[k] = NULL;
-	return (new);
+	return (new_tab);
 }
 
 int		ft_strcmp(const char *s1, const char *s2)
