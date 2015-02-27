@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/26 15:34:46 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/27 10:26:19 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/02/27 10:37:44 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ char	*ft_get_clean_line(char *str, char delim);
 ** ft_builtin_utility.c
 */
 int		ft_is_builtin(char *name);
+t_env	*ft_builtin(char **argv, t_env *env);
+t_env	*ft_builtin_env(t_env *env);
 /*
 **	ft_free.c
 */
