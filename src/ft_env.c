@@ -6,11 +6,39 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/26 15:46:15 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/26 16:22:10 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/27 13:11:22 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_minishell.h"
+#include "libft.h"
+
+char	**ft_get_envp(t_env *env)
+{
+	char	**envp;
+	t_env	*swap;
+	int		i;
+	int		len;
+
+	swap = env;
+	i = 0;
+	while ((swap = swap->next) != NULL)
+		i++;
+	envp = (char**)malloc(sizeof(char*) * (i + 1));
+	swap = env;
+	i = 0;
+	while (swap != NULL)
+	{
+		len = ft_strlen(swap->value) + ft_strlen(swap->name) + 2;
+		envp[i] = (char*)malloc(sizeof(char) * len);
+		envp[i] = ft_strcat(envp[i], swap->name);
+		envp[i] = ft_strcat(envp[i], "=");
+		envp[i] = ft_strcat(envp[i], swap->value);
+		i++;
+		swap = swap->next;
+	}
+	envp[i] = NULL;
+	return (envp);
+}
 
 t_env	*ft_new_env(t_env *env, char *full)
 {
@@ -25,8 +53,8 @@ t_env	*ft_new_env(t_env *env, char *full)
 	while (full[ts] != '=')
 		ts++;
 	new_mem->name = (char*)malloc(sizeof(char) * (ts + 1));
-	new_mem->value = (char*)malloc(sizeof(char) * (ft_strlen(full) - ts));
-	ft_strncpy(new_mem->name, full, ts);
+	new_mem->value = (char*)malloc(sizeof(char) * (strlen(full) - ts));
+	strncpy(new_mem->name, full, ts);
 	ts++;
 	while (full[ts])
 		new_mem->value[ss++] = full[ts++];

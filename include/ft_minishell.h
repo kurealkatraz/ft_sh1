@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/26 15:34:46 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/27 12:59:56 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/27 13:11:58 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int		ft_get_next_line(int fd, char **line);
 /*
 **	ft_env.c
 */
+char	**ft_get_envp(t_env *env);
 t_env	*ft_new_env(t_env *env, char *full);
 t_env	*ft_get_env(t_env *env, char **envp);
 
