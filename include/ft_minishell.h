@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/26 15:34:46 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/27 15:36:40 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/27 16:56:31 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <dirent.h>
+# include <signal.h>
 
 typedef struct		s_env
 {
@@ -27,7 +29,7 @@ typedef struct		s_env
 typedef struct		s_pth
 {
 	char			*path;
-	struct s_env	*next;
+	struct s_pth	*next;
 }					t_pth;
 
 /*
@@ -95,9 +97,11 @@ t_env	*ft_unsetenv(t_env *env, char *mod);
 /*
 ** ft_new_process.c
 */
+char	*ft_split_path(char *value);
 void	ft_new_process(char *path, char **argv, t_env *env);
 char	*ft_find_bin(char *bin, t_env *env);
-t_pth	*ft_get_pth(t_env *env);
+t_pth	*ft_new_pth(t_pth *pth, char *path);
+t_pth	*ft_get_pth(t_pth *pth, t_env *env);
 
 /*
 **	ft_0_free.c

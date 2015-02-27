@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 15:42:51 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/27 15:48:45 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/27 17:20:01 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 char	*ft_split_path(char *value)
 {
+	char	*path;
 	int		i;
 
 	i = 0;
@@ -26,44 +27,58 @@ char	*ft_split_path(char *value)
 		path[i] = value[i];
 		i++;
 	}
-	path[i] == '\0';
-	return (path)
+	path[i] = '\0';
+	return (path);
 }
 
-t_pth	*ft_get_pth(t_env *env)
+t_pth	*ft_new_pth(t_pth *pth, char *path)
 {
-	t_env	*swap;
-	int		len;
+	t_pth	*new;
 	int		i;
 
 	i = 0;
-	len = 0;
+	new = (t_pth*)malloc(sizeof(t_pth));
+	new->next = pth;
+	while (path[i] != '\0')
+		i++;
+	new->path = (char*)malloc(sizeof(char) * (i + 1));
+	i = 0;
+	new->path = ft_strcpy(new->path, path);
+	return (pth);
+}
+
+t_pth	*ft_get_pth(t_pth *pth, t_env *env)
+{
+	t_env	*swap;
+	int		i;
+
+	i = 0;
 	swap = env;
 	while (0 != ft_strcmp(swap->name, "PATH"))
 		swap = swap->next;
 	while (swap->value[i] != '\0')
 	{
-		pth = (t_pth*)malloc(sizeof(t_pth));
-		pth->path = ft_split_path(swap->value + i)
+		pth= ft_new_pth(pth, ft_split_path(swap->value + i));
 		i += ft_strlen(pth->path) + 1;
-		pth = pth->next
 	}
-	ft_putstr("lolno"); //YAMETE
-	return (NULL);
+	return (pth);
 }
+
 
 char	*ft_find_bin(char *bin, t_env *env)
 {
 	t_pth	*pth;
-	char	*path;
 
 	pth = (t_pth*)malloc(sizeof(t_pth));
 	pth = NULL;
-	pth = ft_get_path(env);
+	pth = ft_get_pth(pth, env);
 	while (pth != NULL)
 	{
-		
+		ft_putstr(pth->path);
+		pth = pth->next;
 	}
+	bin = bin;
+	return (NULL);
 }
 
 void	ft_new_process(char *path, char **argv, t_env *env)
