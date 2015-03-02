@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 15:42:51 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/02 13:55:47 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/02 14:32:53 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,24 @@ t_pth	*ft_get_pth(t_pth *pth, t_env *env)
 
 char	*ft_find_bin(char *bin, t_env *env)
 {
-	t_pth	*pth;
+	t_pth			*pth;
+	DIR				*dirp;
+	struct dirent	*dire;
 
 	pth = (t_pth*)malloc(sizeof(t_pth));
 	pth = NULL;
 	pth = ft_get_pth(pth, env);
 	while (pth != NULL)
 	{
-		ft_putstr(pth->path);
+		if (NULL != (dirp = opendir(pth->path)))
+		{
+			while (NULL != (dire = readdir(dirp)))
+			{
+				if (0 == ft_strcmp(dire->d_name, bin))
+					return (pth->path);
+			}
+			closedir(dirp);
+		}
 		pth = pth->next;
 	}
 	bin = bin;
