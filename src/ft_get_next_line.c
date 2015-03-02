@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 16:42:56 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/26 16:48:57 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/02 14:30:14 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,13 @@ int		ft_get_next_line(int fd, char **line)
 
 	if (h_swiper == 0)
 		holder = ft_fill_holder(fd);
-	if (holder[h_swiper] == '\n')
+/*	if (holder[h_swiper] == '\n')
 	{
 		(*line)[0] = '\n';
 		(*line)[1] = '\0';
 		h_swiper++;
 		return (1);
-	}
+	}*/
 	h_swiper = ft_process_line(holder, h_swiper, line);
 	free(holder);
 	h_swiper = 0;
