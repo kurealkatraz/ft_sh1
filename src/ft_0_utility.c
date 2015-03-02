@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/26 15:30:04 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/26 16:53:16 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/02 13:56:01 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,5 @@ char	*ft_strcpy(char *dst, const char *src)
 		ss++;
 	}
 	dst[ss] = '\0';
-	return (0);
+	return (dst);
 }
