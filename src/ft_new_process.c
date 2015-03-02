@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 15:42:51 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/27 17:20:01 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/03/02 13:48:36 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,19 @@ char	*ft_split_path(char *value)
 
 t_pth	*ft_new_pth(t_pth *pth, char *path)
 {
-	t_pth	*new;
+	t_pth	*newpth;
 	int		i;
 
 	i = 0;
-	new = (t_pth*)malloc(sizeof(t_pth));
-	new->next = pth;
+	newpth = (t_pth*)malloc(sizeof(t_pth));
+	newpth->next = pth;
 	while (path[i] != '\0')
 		i++;
-	new->path = (char*)malloc(sizeof(char) * (i + 1));
+	newpth->path = (char*)malloc(sizeof(char) * (i + 1));
 	i = 0;
-	new->path = ft_strcpy(new->path, path);
-	return (pth);
+	newpth->path = ft_strcpy(newpth->path, path);
+	newpth->next = pth;
+	return (newpth);
 }
 
 t_pth	*ft_get_pth(t_pth *pth, t_env *env)
@@ -58,8 +59,8 @@ t_pth	*ft_get_pth(t_pth *pth, t_env *env)
 		swap = swap->next;
 	while (swap->value[i] != '\0')
 	{
-		pth= ft_new_pth(pth, ft_split_path(swap->value + i));
-		i += ft_strlen(pth->path) + 1;
+		pth = ft_new_pth(pth, ft_split_path(swap->value + i));
+		i = i + ft_strlen(pth->path) + 1;
 	}
 	return (pth);
 }

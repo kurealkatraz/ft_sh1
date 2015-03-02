@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/26 15:34:46 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/27 16:56:31 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/02/27 17:30:46 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,5 +112,6 @@ void	ft_free_argv(char **argv);
 **	0_error.c
 */
 void	e_no_match_env(char *erred_str);
+void	e_no_such_path(char *erred_str);
 
 #endif
