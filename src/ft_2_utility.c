@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 09:58:46 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/27 12:07:29 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/02 16:09:13 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ char	**ft_alloc_tab(char *str, char c)
 	j = 0;
 	while (str[i] != '\0')
 		j = (str[i++] == c ? j + 1 : j);
-	new_tab = (char**)malloc(sizeof(char*) * (j + 1));
+	new_tab = (char**)malloc(sizeof(char*) * (j + 2));
 	new_tab[j + 1] = NULL;
 	return (new_tab);
 }

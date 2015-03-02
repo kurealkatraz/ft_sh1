@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 15:46:17 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/02 15:01:59 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/02 15:22:45 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	ft_prompt(char **envp, t_env *env)
 	char	*line;
 	char	**argv;
 	char	*path;
+
 
 	line = NULL;
 	while (42)
