@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/26 15:34:46 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/27 17:30:46 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/02 17:42:42 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_prompt(char **envp, t_env *env);
 **	ft_get_next_line.c
 */
 char	*ft_fill_holder(int fd);
-int		ft_process_line(char *holder, int h_swiper, char **line);
+//int		ft_process_line(char *holder, int h_swiper, char **line);
 int		ft_get_next_line(int fd, char **line);
 
 /*
@@ -74,7 +74,7 @@ char	*ft_strcat(char *s1, char *s2);
 /*
 **	ft_2_utility.c (Strsplit)
 */
-int		ft_get_clean_len(int start, int end, char *str, char delim);
+int		ft_get_clean_len(char *str, char delim);
 int		ft_get_end(char *str, char delim);
 char	*ft_get_clean_line(char *str, char delim);
 char	**ft_alloc_tab(char *str, char c);

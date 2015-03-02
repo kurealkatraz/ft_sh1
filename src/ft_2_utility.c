@@ -6,13 +6,13 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 09:58:46 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/02 16:09:13 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/02 18:13:14 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_minishell.h"
 
-int		ft_get_clean_len(int start, int end, char *str, char delim)
+/*int		ft_get_clean_len(int start, int end, char *str, char delim)
 {
 	int		len;
 
@@ -77,7 +77,9 @@ char	*ft_get_clean_line(char *str, char delim)
 	}
 	clean_str[ss] = '\0';
 	return (clean_str);
-}
+}*/
+
+#include <stdio.h> // YAMETE
 
 char	**ft_alloc_tab(char *str, char c)
 {
@@ -92,6 +94,53 @@ char	**ft_alloc_tab(char *str, char c)
 	new_tab = (char**)malloc(sizeof(char*) * (j + 2));
 	new_tab[j + 1] = NULL;
 	return (new_tab);
+}
+
+
+int		ft_get_clean_len(char *str, char c)
+{
+	int		len;
+	int		i;
+
+	len = 0;
+	i = 0;
+	while (str[i] != '\0')
+		len += (str[i++] == c ? 0 : 1);
+	if (2 == ft_strlen(str))
+		return (len);
+	i = 0;
+	while (str[i + 1] != '\0' && str[i] == c)
+		i++;
+	while (str[i + 1] != '\0')
+	{
+		len += ((str[i] == c && str[i + 1] != c) ? 1 : 0);
+		i++;
+	}
+	return (len);
+}
+
+char	*ft_get_clean_line(char *str, char c)
+{
+	char	*clean;
+	int		len;
+	int		i;
+
+	len = ft_get_clean_len(str, c);
+	clean = (char*)malloc(sizeof(char) * len + 1);
+	i = 0;
+	len = 0;
+	while (str[i] == c && str[i + 1] != '\0')
+		i++;
+	while (str[i + 1] != '\0')
+	{
+		if ((str[i] == c && str[i + 1] != c) || str[i] != c)
+			clean[len++] = str[i];
+		i++;
+	}
+	if (str[i] != c)
+		clean[len++] = str[i];
+	clean[len] = '\0';
+	return (clean);
 }
 
 char	**ft_strsplit(const char *str, char c)
