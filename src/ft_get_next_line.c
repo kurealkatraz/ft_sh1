@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 16:42:56 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/02 15:42:07 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/02 16:43:36 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,10 @@ int		ft_process_line(char *holder, int h_swiper, char **line)
 
 int		ft_get_next_line(int fd, char **line)
 {
-	static char	*holder;
-	static int	h_swiper = 0;
+	char	*holder;
+	int	h_swiper = 0;
 
-	if (h_swiper == 0)
-		holder = ft_fill_holder(fd);
+	holder = ft_fill_holder(fd);
 	h_swiper = ft_process_line(holder, h_swiper, line);
 	free(holder);
 	h_swiper = 0;
