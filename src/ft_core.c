@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 15:46:17 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/02 14:34:18 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/02 15:01:59 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ void	ft_prompt(char **envp, t_env *env)
 	{
 		ft_putstr("/_| _.\n  | /_ ");
 		line = ft_read();
-		argv = ft_strsplit((const char*)line, ' ');
-		if (argv[0] != NULL)
+		if (line[0] != '\0')
 		{
+			argv = ft_strsplit((const char*)line, ' ');
 			if (1 == ft_is_builtin(argv[0]))
 				env = ft_builtin(argv, env);
 			else
@@ -47,6 +47,7 @@ void	ft_prompt(char **envp, t_env *env)
 					ft_new_process(path, argv, env);
 			}
 			ft_free_argv(argv);
+			free(line);
 			argv = NULL;
 		}
 	}
