@@ -6,26 +6,11 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 14:42:02 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/04 10:31:11 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/04 17:20:14 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_minishell.h"
-
-void	ft_env(t_env *env)
-{
-	t_env	*tmp;
-
-	tmp = env;
-	while (tmp != NULL)
-	{
-		ft_putstr(tmp->name);
-		ft_putchar('=');
-		ft_putstr(tmp->value);
-		ft_putchar('\n');
-		tmp = tmp->next;
-	}
-}
 
 t_env	*ft_setenv(t_env *env, char *mod)
 {
@@ -62,25 +47,27 @@ t_env	*ft_unsetenv(t_env *env, char *mod)
 	return (env);
 }
 
-t_env	*ft_cd(t_env *env, char *dir)
+t_env	*ft_maj_pwd(t_env *env)
 {
-	t_env	*tmp;
-	char	*buff;
 	char	*full;
+	char	*buff;
 
-	tmp = env;
-	while (ft_strcmp(tmp->name, "PWD") != 0) 
-		tmp = tmp->next;
 	buff = (char*)malloc(sizeof(char) * (PATH_MAX + 1));
 	buff = getcwd(buff, PATH_MAX);
-	chdir(dir);
-	buff = getcwd(buff, PATH_MAX);
-	full = (char*)malloc(sizeof(char) * (ft_strlen(buff) + ft_strlen("PWD=") + 1));
-	ft_strncpy(full, "PWD=", ft_strlen("PWD="));
-	ft_strcat(full, buff);
-	env = ft_unsetenv(env, "PWD");
+	full = (char*)malloc(sizeof(char) * (ft_strlen(buff) + 5));
+	full = ft_strcpy(full, "PWD=");
+	full = ft_strcat(full, buff);
 	env = ft_setenv(env, full);
-	free(full);
 	free(buff);
+	free(full);
+	return (env);
+}
+
+t_env	*ft_cd(t_env *env, char *dir)
+{
+	env = ft_maj_pwd(env);
+	chdir(dir);
+	env = ft_unsetenv(env, "PWD");
+	env = ft_maj_pwd(env);
 	return (env);
 }
