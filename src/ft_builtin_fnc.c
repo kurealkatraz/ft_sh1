@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 14:42:02 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/02 14:11:36 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/04 10:01:08 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,25 +65,22 @@ t_env	*ft_unsetenv(t_env *env, char *mod)
 t_env	*ft_cd(t_env *env, char *dir)
 {
 	t_env	*tmp;
-	char	*val;
+	char	*buff;
 	char	*full;
 
 	tmp = env;
-	if (getcwd(NULL, 0) != NULL)
-	{
-		while (ft_strcmp(tmp->name, "PWD") != 0) 
-			tmp = tmp->next;
-		val = (char*)malloc(sizeof(char) * (ft_strlen(getcwd(NULL, 0))));
-		ft_strcpy(val, getcwd(NULL, 0));
-		full = (char*)malloc(sizeof(char) * (ft_strlen(val) + ft_strlen("PWD=")));
-		ft_strncpy(full, "PWD=", ft_strlen("PWD="));
-		ft_strcat(full, val);
-		ft_unsetenv(tmp, dir);
-		ft_setenv(env, full);
-		free(full);
-		free(val);
-	}
-	else
-		e_no_such_path(dir);
+	while (ft_strcmp(tmp->name, "PWD") != 0) 
+		tmp = tmp->next;
+	buff = (char*)malloc(sizeof(char) * (PATH_MAX + 1));
+	buff = getcwd(buff, PATH_MAX);
+	chdir(dir);
+	buff = getcwd(buff, PATH_MAX);
+	full = (char*)malloc(sizeof(char) * (ft_strlen(buff) + ft_strlen("PWD=") + 1));
+	ft_strncpy(full, "PWD=", ft_strlen("PWD="));
+	ft_strcat(full, buff);
+	ft_unsetenv(tmp, dir);
+	ft_setenv(env, full);
+	free(full);
+	free(buff);
 	return (env);
 }

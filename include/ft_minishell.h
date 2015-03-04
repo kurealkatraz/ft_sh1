@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/26 15:34:46 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/04 09:37:52 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/04 10:00:35 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <dirent.h>
 # include <signal.h>
+# include <limits.h>
 
 typedef struct		s_env
 {
