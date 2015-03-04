@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 14:42:02 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/04 17:20:14 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/03/04 23:06:40 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,42 @@ t_env	*ft_unsetenv(t_env *env, char *mod)
 	return (env);
 }
 
+t_env	*ft_oldpwd(t_env *env)
+{
+	char	*swap;
+	t_env	*tmp;
+
+	tmp = env;
+	while (tmp->next != NULL && 0 != ft_strcmp(tmp->name, "PWD"))
+		tmp = tmp->next;
+	if (tmp->next == NULL)
+		return (env);
+	swap = (char*)malloc(sizeof(char) * (8 + ft_strlen(tmp->value)));
+	swap = ft_strcpy(swap, "OLDPWD=");
+	swap = ft_strcat(swap, tmp->value);
+	tmp = env;
+	while (tmp->next != NULL && 0 != ft_strcmp(tmp->name, "OLDPWD"))
+		tmp = tmp->next;
+	if (tmp->next == NULL)
+		return (env);
+	chdir(tmp->value);
+	env = ft_maj_pwd(env);
+	env = ft_unsetenv(env, "OLDPWD");
+	env = ft_setenv(env, swap);
+	return (env);
+}
+
 t_env	*ft_maj_pwd(t_env *env)
 {
+	t_env	*swap;
 	char	*full;
 	char	*buff;
 
+	swap = env;
+	while (swap->next != NULL && 0 != ft_strcmp(swap->name, "PWD"))
+		swap = swap->next;
+	if (swap->next != NULL)
+		env = ft_unsetenv(env, "PWD");
 	buff = (char*)malloc(sizeof(char) * (PATH_MAX + 1));
 	buff = getcwd(buff, PATH_MAX);
 	full = (char*)malloc(sizeof(char) * (ft_strlen(buff) + 5));
@@ -65,6 +96,8 @@ t_env	*ft_maj_pwd(t_env *env)
 
 t_env	*ft_cd(t_env *env, char *dir)
 {
+	if (0 == ft_strcmp(dir, "-"))
+		return (env = ft_oldpwd(env));
 	env = ft_maj_pwd(env);
 	chdir(dir);
 	env = ft_unsetenv(env, "PWD");

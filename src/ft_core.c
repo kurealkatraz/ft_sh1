@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 15:46:17 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/02 15:22:45 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/04 22:03:12 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ char	*ft_read(void)
 
 	if (ft_get_next_line(0, &line) == 1)
 		return (line);
-	else
-		exit (0);
 	return (NULL);
 }
 
@@ -34,8 +32,7 @@ void	ft_prompt(char **envp, t_env *env)
 	while (42)
 	{
 		ft_putstr("/_| _.\n  | /_ ");
-		line = ft_read();
-		if (line[0] != '\0')
+		if (NULL != (line = ft_read()))
 		{
 			argv = ft_strsplit((const char*)line, ' ');
 			if (1 == ft_is_builtin(argv[0]))
@@ -51,6 +48,8 @@ void	ft_prompt(char **envp, t_env *env)
 			free(line);
 			argv = NULL;
 		}
+		else
+			exit(-1);
 	}
 	envp = envp;
 }

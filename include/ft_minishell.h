@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/26 15:34:46 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/04 10:00:35 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/03/04 22:53:51 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,13 @@ t_env	*ft_builtin_env(t_env *env);
 /*
 **	ft_builtin_fnc.c
 */
-void	ft_env(t_env *env);
+
+t_env	*ft_maj_pwd(t_env *env);
+t_env	*ft_oldpwd(t_env *env);
 t_env	*ft_setenv(t_env *env, char *mod);
 t_env	*ft_unsetenv(t_env *env, char *mod);
 t_env	*ft_cd(t_env *env, char *dir);
+
 
 /*
 ** ft_new_process.c

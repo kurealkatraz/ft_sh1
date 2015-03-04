@@ -14,6 +14,13 @@ builtins :
 	unsetenv
 	cd
 
+cd
+	swap = OLDPWD
+	chdir(OLDPWD)
+	unsetenv(PWD)
+	setenv(PWD=swap)
+
+
 main(argc, argv, envp)
 	env = ft_env(envp)
 	ft_prompt(env)

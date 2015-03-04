@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 16:42:56 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/02 18:56:15 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/03/04 21:49:47 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ int		ft_get_next_line(int fd, char **line)
 	int		len;
 
 	len = 0;
-	holder = ft_fill_holder(fd);
+	if (NULL == (holder = ft_fill_holder(fd)))
+		return (0);
 	while (holder[len] != '\n' && holder[len] != '\0')
 		len++;
 	if (!(*line = (char*)malloc(sizeof(char) * (len + 1))))
