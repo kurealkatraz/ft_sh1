@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 14:42:02 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/04 10:01:08 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/03/04 10:31:11 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ t_env	*ft_cd(t_env *env, char *dir)
 	full = (char*)malloc(sizeof(char) * (ft_strlen(buff) + ft_strlen("PWD=") + 1));
 	ft_strncpy(full, "PWD=", ft_strlen("PWD="));
 	ft_strcat(full, buff);
-	ft_unsetenv(tmp, dir);
-	ft_setenv(env, full);
+	env = ft_unsetenv(env, "PWD");
+	env = ft_setenv(env, full);
 	free(full);
 	free(buff);
 	return (env);

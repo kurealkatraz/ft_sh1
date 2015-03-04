@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 10:12:20 by tlebrize          #+#    #+#             */
-/*   Updated: 2015/03/04 09:37:10 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/04 10:20:07 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		ft_is_builtin(char *name)
 t_env	*ft_builtin(char **argv, t_env *env)
 {
 	if (0 == ft_strcmp(argv[0], "cd") && argv[1] != NULL)
-		return (ft_cd(env, argv[0]));
+		return (ft_cd(env, argv[1]));
 	else if (0 == ft_strcmp(argv[0], "env"))
 		return (ft_builtin_env(env));
 	else if (0 == ft_strcmp(argv[0], "setenv") && argv[1] != NULL)
