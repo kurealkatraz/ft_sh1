@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_builtin_utility.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlebrize <tlebrize@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 10:12:20 by tlebrize          #+#    #+#             */
-/*   Updated: 2015/02/27 10:44:38 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/03/04 09:12:09 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ int		ft_is_builtin(char *name)
 t_env	*ft_builtin(char **argv, t_env *env)
 {
 	if (0 == ft_strcmp(argv[0], "cd"))
-		return (env);
-	else if (0 == ft_strcmp(argv[0], "env"))
+		return (ft_cd(env, argv[0]));
+	else if (0 == ft_strcmp(argv[1], "env"))
 		return (ft_builtin_env(env));
 	else if (0 == ft_strcmp(argv[0], "setenv"))
-		return (env);
+		return (ft_setenv(env, argv[1]));
 	else if (0 == ft_strcmp(argv[0], "unsetenv"))
-		return (env);
+		return (ft_unsetenv(env, argv[1]));
 	else
 		return (env);
 }
