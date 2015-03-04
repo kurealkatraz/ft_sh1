@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 14:42:02 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/04 23:06:40 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/03/04 23:19:30 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,17 @@
 
 t_env	*ft_setenv(t_env *env, char *mod)
 {
-	env = ft_new_env(env, mod);	//XDDD LE EPIC FEDORA MASTER
-	return (env);				//WWW.CODEMASTER.COM FOR FULL TUTORIAL
+	char	*name;
+	int		len;
+
+	while (mod[len] != '=' && mod[len] != '\0')
+		len++;
+	name = (char*)malloc(sizeof(char) * (len + 1));
+	name = ft_strncpy(name, mod, len);
+	while (swap->next != NULL && 0 != ft_strcmp( ))
+	env = ft_new_env(env, mod);
+	free(name);
+	return (env);
 }
 
 t_env	*ft_unsetenv(t_env *env, char *mod)
