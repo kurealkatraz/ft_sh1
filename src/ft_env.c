@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/26 15:46:15 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/02 14:11:33 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/04 09:24:28 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@ t_env	*ft_free_member(t_env *current, t_env *saved)
 	free(current->value);
 	if (saved != NULL)
 		saved->next = current->next;
+	else
+	{
+		saved = current->next;
+		free(current);
+		return (saved);
+	}
 	free(current);
 	return (saved->next);
 }

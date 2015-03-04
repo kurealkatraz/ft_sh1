@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/26 15:34:46 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/04 09:12:39 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/04 09:37:52 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,11 @@ char	**ft_get_envp(t_env *env);
 t_env	*ft_new_env(t_env *env, char *full);
 t_env	*ft_get_env(t_env *env, char **envp);
 t_env	*ft_free_member(t_env *current, t_env *saved);
+
+/*
+**	ft_check_argv.c
+*/
+int		ft_check_setenv(char *arg);
 
 /*
 **	ft_0_utility.c
