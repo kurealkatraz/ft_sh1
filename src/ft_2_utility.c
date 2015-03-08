@@ -6,80 +6,11 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 09:58:46 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/02 18:13:14 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/03/08 16:50:40 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_minishell.h"
-
-/*int		ft_get_clean_len(int start, int end, char *str, char delim)
-{
-	int		len;
-
-	len = 0;
-	while (str[start] == delim && str[start] != '\0')
-		start++;
-	end = ft_strlen(str);
-	while (str[end] == delim && end >= start)
-		end--;
-	while (start < end)
-	{
-		if (str[start] == delim)
-		{
-			len++;
-			while (str[start] == delim)
-				start++;
-		}
-		else
-		{
-			len++;
-			start++;
-		}
-	}
-	return (len);
-}
-
-int		ft_get_end(char *str, char delim)
-{
-	int		ss;
-
-	ss = 0;
-	while (str[ss])
-		ss++;
-	while (str[ss] == delim)
-		ss--;
-	return (ss);
-}
-
-char	*ft_get_clean_line(char *str, char delim)
-{
-	char	*clean_str;
-	int		cs;
-	int		ts;
-	int		ss;
-
-	ts = ft_get_clean_len(0, 0, str, delim);
-	clean_str = (char*)malloc(sizeof(char) * ts);
-	ss = 0;
-	cs = 0;
-	while (str[ss] == delim)
-		ss++;
-	while (ss < ft_get_end(str, delim))
-	{
-		if (str[ss] == delim)
-		{
-			clean_str[cs++] = str[ss];
-			while (str[ss] == delim)
-				ss++;
-		}
-		else
-			clean_str[cs++] = str[ss++];
-	}
-	clean_str[ss] = '\0';
-	return (clean_str);
-}*/
-
-#include <stdio.h> // YAMETE
 
 char	**ft_alloc_tab(char *str, char c)
 {
