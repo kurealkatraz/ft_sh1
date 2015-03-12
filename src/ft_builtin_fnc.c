@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 14:42:02 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/08 16:56:08 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/12 16:48:33 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,30 @@
 
 t_env	*ft_setenv(t_env *env, char *mod)
 {
+	t_env	*swap;
 	char	*name;
 	int		len;
 
+	swap = env;
 	while (mod[len] != '=' && mod[len] != '\0')
 		len++;
 	name = (char*)malloc(sizeof(char) * (len + 1));
 	name = ft_strncpy(name, mod, len);
-	while (swap->next != NULL && 0 != ft_strcmp( ))
-	env = ft_new_env(env, mod);
+	while (swap != NULL)
+	{
+		if (0 == ft_strcmp(name, swap->name))
+		{
+			env = ft_unsetenv(env, name);
+			env = ft_setenv(env, mod);
+			return (env);
+		}
+		else if (swap->next == NULL)
+		{
+			swap->next = ft_new_env(NULL, mod);
+			return (env);
+		}
+		swap = swap->next;
+	}
 	free(name);
 	return (env);
 }
