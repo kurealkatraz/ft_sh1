@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 16:42:56 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/04 21:49:47 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/03/13 15:20:54 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,23 +35,6 @@ char	*ft_fill_holder(int fd)
 	free(buf);
 	return (tmp);
 }
-
-/*int		ft_process_line(char *holder, int h_swiper, char **line)
-{
-	int		ls;
-	int		ls_bis;
-
-	ls = 0;
-	ls_bis = 0;
-	while (holder[h_swiper + ls] != '\0' && holder[h_swiper + ls] != '\n')
-		ls++;
-	if (!(*line = (char*)malloc(sizeof(char) * (ls + 1))))
-		return (0);
-	while (holder[h_swiper] != '\0' && holder[h_swiper] != '\n')
-		(*line)[ls_bis++] = holder[h_swiper++];
-	(*line)[ls_bis] = '\0';
-	return (h_swiper + 1);
-}*/
 
 int		ft_get_next_line(int fd, char **line)
 {
