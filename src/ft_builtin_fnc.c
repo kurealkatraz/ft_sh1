@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 14:42:02 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/12 16:48:33 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/03/13 18:37:50 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,8 @@ t_env	*ft_oldpwd(t_env *env)
 		tmp = tmp->next;
 	if (tmp->next == NULL)
 		return (env);
-	chdir(tmp->value);
+	if (chdir(tmp->value) != 0)
+		ft_putstr("error : chdir is feeling sick\n");
 	env = ft_maj_pwd(env);
 	env = ft_unsetenv(env, "OLDPWD");
 	env = ft_setenv(env, swap);
@@ -120,9 +121,9 @@ t_env	*ft_maj_pwd(t_env *env)
 
 t_env	*ft_cd(t_env *env, char *dir)
 {
-	if (0 == ft_strcmp(dir, "-"))
-		return (env = ft_oldpwd(env));
 	env = ft_maj_pwd(env);
+	if (dir[0] == '-')
+		return (env = ft_oldpwd(env));
 	chdir(dir);
 	env = ft_unsetenv(env, "PWD");
 	env = ft_maj_pwd(env);
