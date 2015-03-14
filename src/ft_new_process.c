@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 15:42:51 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/14 11:47:05 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/14 17:09:43 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,41 @@ t_pth	*ft_get_pth(t_pth *pth, t_env *env)
 	return (pth);
 }
 
+void	ft_free_pth(t_pth *pth)
+{
+	t_pth	*save;
+
+	while (pth != NULL)
+	{
+		save = pth;
+		pth = pth->next;
+		free(save->path);
+		free(save);
+	}
+	save = NULL;
+	pth = NULL;
+}
+
+char	*ft_clear_pth(t_pth *save, t_pth *curr)
+{
+	char	*dubs;
+
+	dubs = ft_strdup(curr->path);
+	ft_free_pth(save);
+	return (dubs);
+}
 
 char	*ft_find_bin(char *bin, t_env *env)
 {
 	t_pth			*pth;
+	t_pth			*save;
 	DIR				*dirp;
 	struct dirent	*dire;
 
 	pth = (t_pth*)malloc(sizeof(t_pth));
+	pth = NULL;
 	pth = ft_get_pth(pth, env);
+	save = pth;
 	while (pth != NULL)
 	{
 		if (NULL != (dirp = opendir(pth->path)))
@@ -81,7 +107,7 @@ char	*ft_find_bin(char *bin, t_env *env)
 			while (NULL != (dire = readdir(dirp)))
 			{
 				if (0 == ft_strcmp(dire->d_name, bin))
-					return (pth->path);
+					return (ft_clear_pth(save, pth));
 			}
 			closedir(dirp);
 		}
@@ -106,7 +132,7 @@ void	ft_new_process(char *path, char **argv, t_env *env)
 	if (pid == 0)
 	{
 		execve(bin, argv, envp);
-		kill(getpid(), SIGHUP);
+		kill(getpid(), SIGKILL);
 	}
 	else
 		wait(&sys_stat);
