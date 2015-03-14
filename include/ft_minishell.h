@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/26 15:34:46 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/14 15:08:43 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/14 18:29:04 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,7 @@ char	*ft_strcat(char *s1, char *s2);
 /*
 **	ft_2_utility.c (Strsplit)
 */
-int		ft_get_clean_len(char *str, char delim);
-int		ft_get_end(char *str, char delim);
-char	*ft_get_clean_line(char *str, char delim);
-char	**ft_alloc_tab(char *str, char c);
-char	**ft_strsplit(const char *str, char c);
+char	**ft_strsplit(char *str, char c);
 
 /*
 ** ft_builtin_utility.c

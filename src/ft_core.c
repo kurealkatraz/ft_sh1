@@ -6,10 +6,9 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 15:46:17 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/14 16:24:30 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/14 18:25:18 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "ft_minishell.h"
 
@@ -36,7 +35,7 @@ void	ft_prompt(char **envp, t_env *env)
 		{
 			if (line[0] != '\0')
 			{
-				argv = ft_strsplit((const char*)line, ' ');
+				argv = ft_strsplit(line, ' ');
 				if (1 == ft_is_builtin(argv[0]))
 					env = ft_builtin(argv, env);
 				else
