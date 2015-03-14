@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 14:42:02 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/13 18:54:32 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/14 10:08:56 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ t_env	*ft_setenv(t_env *env, char *mod)
 		}
 		swap = swap->next;
 	}
-	free(name);
 	return (env);
 }
 
@@ -100,22 +99,24 @@ t_env	*ft_oldpwd(t_env *env)
 t_env	*ft_maj_pwd(t_env *env)
 {
 	t_env	*swap;
-	char	*full;
 	char	*buff;
 
 	swap = env;
-	while (swap->next != NULL && 0 != ft_strcmp(swap->name, "PWD"))
+	while (swap != NULL && 0 != ft_strcmp(swap->name, "PWD"))
 		swap = swap->next;
-	if (swap->next != NULL)
-		env = ft_unsetenv(env, "PWD");
-	buff = (char*)malloc(sizeof(char) * (PATH_MAX + 1));
+	buff = (char*)malloc(sizeof(char) * (PATH_MAX + 5));
+	if (swap == NULL)
+	{
+		buff = ft_strcpy(buff, "PWD=");
+		buff = ft_strcat (buff, getcwd(NULL, PATH_MAX));
+		env = ft_setenv(env, buff);
+		return (env);
+	}
+	free(swap->value);
 	buff = getcwd(buff, PATH_MAX);
-	full = (char*)malloc(sizeof(char) * (ft_strlen(buff) + 5));
-	full = ft_strcpy(full, "PWD=");
-	full = ft_strcat(full, buff);
-	env = ft_setenv(env, full);
+	swap->value = (char*)malloc(sizeof(char) * (ft_strlen(buff) + 1));
+	swap->value = ft_strcpy(swap->value, buff);
 	free(buff);
-	free(full);
 	return (env);
 }
 
@@ -125,7 +126,6 @@ t_env	*ft_cd(t_env *env, char *dir)
 	if (dir[0] == '-')
 		return (env = ft_oldpwd(env));
 	chdir(dir);
-	env = ft_unsetenv(env, "PWD");
 	env = ft_maj_pwd(env);
 	return (env);
 }
