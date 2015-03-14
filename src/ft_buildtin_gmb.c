@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/14 10:27:47 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/14 11:04:23 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/14 15:05:05 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,4 +17,21 @@
  		ft_putstr(erred);
  		ft_putstr(" : Is not a Valid name for a Directory\n");
  	}
+ 	else if (index == 1)
+ 		ft_putstr("U WOT M8 ? REMOVING HOME JUST LIKE THAT ? OH HELL NO\n");
  }
+
+t_env	*ft_home_cd(t_env *env)
+{
+	t_env	*swp;
+
+	swp = env;
+	while (swp->next != NULL && (ft_strcmp(swp->name, "HOME") != 0))
+		swp = swp->next;
+	if (swp->next == NULL)
+	{
+		ft_cd_errors(1, NULL);
+		return (env);
+	}
+	return (ft_cd(env, swp->value));
+}

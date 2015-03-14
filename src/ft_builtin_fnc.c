@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 14:42:02 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/14 10:08:56 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/03/14 15:04:51 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,8 @@ t_env	*ft_maj_pwd(t_env *env)
 t_env	*ft_cd(t_env *env, char *dir)
 {
 	env = ft_maj_pwd(env);
+	if (dir == NULL)
+		return (ft_home_cd(env));
 	if (dir[0] == '-')
 		return (env = ft_oldpwd(env));
 	chdir(dir);

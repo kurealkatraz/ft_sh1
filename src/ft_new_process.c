@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 15:42:51 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/14 10:10:40 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/14 11:47:05 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ char	*ft_find_bin(char *bin, t_env *env)
 	struct dirent	*dire;
 
 	pth = (t_pth*)malloc(sizeof(t_pth));
-	pth = NULL;
 	pth = ft_get_pth(pth, env);
 	while (pth != NULL)
 	{
@@ -88,7 +87,6 @@ char	*ft_find_bin(char *bin, t_env *env)
 		}
 		pth = pth->next;
 	}
-	bin = bin;
 	return (NULL);
 }
 
@@ -97,6 +95,7 @@ void	ft_new_process(char *path, char **argv, t_env *env)
 	pid_t	pid;
 	char	**envp;
 	char	*bin;
+	int		sys_stat;
 
 	bin = (char*)malloc(sizeof(char) * (ft_strlen(path) + ft_strlen(argv[0]) + 2));
 	bin = ft_strcpy(bin, path);
@@ -107,10 +106,10 @@ void	ft_new_process(char *path, char **argv, t_env *env)
 	if (pid == 0)
 	{
 		execve(bin, argv, envp);
-		kill(getpid(), SIGKILL);
+		kill(getpid(), SIGHUP);
 	}
 	else
-		wait(NULL);
+		wait(&sys_stat);
 	free(envp);
 	free(bin);
 }
