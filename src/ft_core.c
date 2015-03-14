@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 15:46:17 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/13 18:14:30 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/14 11:09:22 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,22 @@ void	ft_prompt(char **envp, t_env *env)
 		ft_putstr("/_| _.\n  | /_ ");
 		if (NULL != (line = ft_read()))
 		{
-			argv = ft_strsplit((const char*)line, ' ');
-			if (1 == ft_is_builtin(argv[0]))
-				env = ft_builtin(argv, env);
-			else
+			if (line[0] != '\0')
 			{
-				if ((path = ft_find_bin(argv[0], env)) == NULL)
-					ft_putstr("not found\n");
+				argv = ft_strsplit((const char*)line, ' ');
+				if (1 == ft_is_builtin(argv[0]))
+					env = ft_builtin(argv, env);
 				else
-					ft_new_process(path, argv, env);
+				{
+					if ((path = ft_find_bin(argv[0], env)) == NULL)
+						ft_putstr("not found\n");
+					else
+						ft_new_process(path, argv, env);
+				}
+				ft_free_argv(argv);
+				free(line);
+				argv = NULL;
 			}
-			ft_free_argv(argv);
-			free(line);
-			argv = NULL;
 		}
 		else
 			exit(-1);
