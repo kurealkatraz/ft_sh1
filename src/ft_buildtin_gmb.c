@@ -6,9 +6,11 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/14 10:27:47 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/14 15:05:05 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/14 15:12:42 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_minishell.h"
 
  void	ft_cd_errors(int index, char *erred)
  {
@@ -26,12 +28,12 @@ t_env	*ft_home_cd(t_env *env)
 	t_env	*swp;
 
 	swp = env;
-	while (swp->next != NULL && (ft_strcmp(swp->name, "HOME") != 0))
-		swp = swp->next;
-	if (swp->next == NULL)
+	while (swp != NULL)
 	{
-		ft_cd_errors(1, NULL);
-		return (env);
+		if (ft_strcmp(swp->name, "HOME") == 0)
+			return (ft_cd(env, swp->value));
+		swp = swp->next;
 	}
-	return (ft_cd(env, swp->value));
+	ft_cd_errors(1, NULL);
+	return (env);
 }

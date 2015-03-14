@@ -6,7 +6,7 @@
 #    By: mgras <mgras@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/02/26 15:24:20 by mgras             #+#    #+#              #
-#    Updated: 2015/03/04 09:37:25 by mgras            ###   ########.fr        #
+#    Updated: 2015/03/14 15:09:59 by mgras            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ SRC_NAME =	ft_0_utility.c \
 			ft_builtin_fnc.c \
 			0_error.c \
 			ft_new_process.c \
-			ft_check_argv.c
+			ft_check_argv.c \
+			ft_buildtin_gmb.c \
 
 SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
 

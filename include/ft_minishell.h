@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/26 15:34:46 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/14 10:07:59 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/03/14 15:08:43 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	ft_prompt(char **envp, t_env *env);
 **	ft_get_next_line.c
 */
 char	*ft_fill_holder(int fd);
-//int		ft_process_line(char *holder, int h_swiper, char **line);
 int		ft_get_next_line(int fd, char **line);
 
 /*
@@ -96,12 +95,17 @@ t_env	*ft_builtin_env(t_env *env);
 /*
 **	ft_builtin_fnc.c
 */
-
 t_env	*ft_maj_pwd(t_env *env);
 t_env	*ft_oldpwd(t_env *env);
 t_env	*ft_setenv(t_env *env, char *mod);
 t_env	*ft_unsetenv(t_env *env, char *mod);
 t_env	*ft_cd(t_env *env, char *dir);
+
+/*
+**	ft_builtin_gmb.c
+*/
+void	ft_cd_errors(int index, char *erred);
+t_env	*ft_home_cd(t_env *env);
 
 
 /*
