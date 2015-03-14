@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 14:42:02 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/13 18:37:50 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/13 18:54:32 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ t_env	*ft_oldpwd(t_env *env)
 	tmp = env;
 	while (tmp->next != NULL && 0 != ft_strcmp(tmp->name, "OLDPWD"))
 		tmp = tmp->next;
-	if (tmp->next == NULL)
+	if (tmp == NULL)
 		return (env);
 	if (chdir(tmp->value) != 0)
 		ft_putstr("error : chdir is feeling sick\n");
