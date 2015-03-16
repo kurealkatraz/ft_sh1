@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/14 10:27:47 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/14 15:12:42 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/16 15:39:54 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_env	*ft_home_cd(t_env *env)
 	t_env	*swp;
 
 	swp = env;
+	env = ft_maj_old(env);
 	while (swp != NULL)
 	{
 		if (ft_strcmp(swp->name, "HOME") == 0)
