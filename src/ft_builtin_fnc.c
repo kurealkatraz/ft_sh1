@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 14:42:02 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/16 16:07:14 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/16 17:46:35 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ t_env	*ft_unsetenv(t_env *env, char *mod)
 		ft_free_member(tmp, NULL);
 		return (env);
 	}
-	while((r = ft_strcmp(tmp->name, mod)) != 0)
+	while((r = ft_strcmp(tmp->name, mod)) != 0 && tmp->next != NULL)
 	{
 		save = tmp;
 		tmp = tmp->next;
@@ -127,12 +127,19 @@ t_env	*ft_maj_old(t_env *env)
 
 t_env	*ft_cd(t_env *env, char *dir)
 {
-	if (dir == NULL || dir[0] == '~')
+	int		r;
+
+	if (dir == NULL)
 		return (ft_home_cd(env));
 	if (dir[0] == '-')
 		return (env = ft_oldpwd(env));
-	chdir(dir);
-	env = ft_maj_old(env);
+	if ((r = chdir(dir)) != 0)
+	{
+		ft_putstr(dir);
+		ft_putstr(" is not a Valid Directory\n");
+	}
+	if (r == 0)
+		env = ft_maj_old(env);
 	env = ft_maj_pwd(env);
 	return (env);
 }
