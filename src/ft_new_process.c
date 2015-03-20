@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 15:42:51 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/19 16:35:22 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/03/20 16:03:24 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ void	ft_new_process(char *path, char **argv, t_env *env)
 	int		sys_stat;
 
 	bin = (char*)malloc(sizeof(char) * (ft_strlen(path) + ft_strlen(argv[0]) + 2));
-	bin = ft_strcpy(bin, path);
+	bin = ft_strncpy(bin, path, ft_strlen(path));
 	bin = ft_strcat(bin, "/");
 	bin = ft_strcat(bin, argv[0]);
 	envp = ft_get_envp(env);
