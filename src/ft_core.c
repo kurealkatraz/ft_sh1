@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 15:46:17 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/14 18:25:18 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/03/19 17:48:41 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,16 @@ void	ft_prompt(char **envp, t_env *env)
 	while (42)
 	{
 		line = NULL;
-		ft_putstr("/_| _.\n  | /_ ");
+		ft_colors(envp);
 		if (NULL != (line = ft_read()))
 		{
 			if (line[0] != '\0')
 			{
 				argv = ft_strsplit(line, ' ');
 				if (1 == ft_is_builtin(argv[0]))
+				{
 					env = ft_builtin(argv, env);
+				}
 				else
 				{
 					if ((path = ft_find_bin(argv[0], env)) == NULL)

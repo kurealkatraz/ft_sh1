@@ -1,4 +1,0 @@
-ls -l "\t"
-"\t" in general
-kay need to trim all the "\" of the argv
-Gestion du CTRL+C sur les Forked process

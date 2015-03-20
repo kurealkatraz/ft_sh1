@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 15:42:51 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/14 17:09:43 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/19 16:35:22 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,10 @@ t_pth	*ft_get_pth(t_pth *pth, t_env *env)
 
 	i = 0;
 	swap = env;
-	while (0 != ft_strcmp(swap->name, "PATH"))
+	while (swap != NULL && 0 != ft_strcmp(swap->name, "PATH"))
 		swap = swap->next;
+	if (swap == NULL)
+		return (NULL);
 	while (swap->value[i] != '\0')
 	{
 		pth = ft_new_pth(pth, ft_split_path(swap->value + i));
@@ -98,7 +100,8 @@ char	*ft_find_bin(char *bin, t_env *env)
 
 	pth = (t_pth*)malloc(sizeof(t_pth));
 	pth = NULL;
-	pth = ft_get_pth(pth, env);
+	if (!(pth = ft_get_pth(pth, env)))
+		return(NULL);
 	save = pth;
 	while (pth != NULL)
 	{

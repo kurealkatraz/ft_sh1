@@ -6,10 +6,9 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/26 15:46:15 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/13 16:55:27 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/19 17:03:17 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "ft_minishell.h"
 
@@ -60,24 +59,18 @@ char	**ft_get_envp(t_env *env)
 
 t_env	*ft_new_env(t_env *env, char *full)
 {
-	t_env	*new_mem;
-	int		ts;
-	int		ss;
+	t_env	*new;
+	size_t	size;
 
-	ts = 0;
-	ss = 0;
-	new_mem = (t_env*)malloc(sizeof(t_env));
-	new_mem->next = env;
-	while (full[ts] != '=')
-		ts++;
-	new_mem->name = (char*)malloc(sizeof(char) * (ts + 1));
-	new_mem->value = (char*)malloc(sizeof(char) * (ft_strlen(full) - ts));
-	ft_strncpy(new_mem->name, full, ts);
-	ts++;
-	while (full[ts])
-		new_mem->value[ss++] = full[ts++];
-	new_mem->value[ss] = '\0';
-	return (new_mem);
+	size = 0;
+	while (full[size] != '\0' && full[size] != '=')
+		size++;
+	new = (t_env*)malloc(sizeof(t_env));
+	new->next = env;
+	new->name = (char*)malloc(sizeof(char) * (size + 1));
+	new->name = ft_strncpy(new->name, full, size);
+	new->value = ft_strsub(full, size, (ft_strlen(full) - size));
+	return (new);
 }
 
 t_env	*ft_get_env(t_env *env, char **envp)

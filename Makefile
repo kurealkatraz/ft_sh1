@@ -6,16 +6,13 @@
 #    By: mgras <mgras@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/02/26 15:24:20 by mgras             #+#    #+#              #
-#    Updated: 2015/03/14 15:09:59 by mgras            ###   ########.fr        #
+#    Updated: 2015/03/20 15:11:07 by tlebrize         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC_PATH = ./src/
 
-SRC_NAME =	ft_0_utility.c \
-			ft_1_utility.c \
-			ft_2_utility.c \
-			ft_0_free.c \
+SRC_NAME =	ft_0_free.c \
 			ft_builtin_utility.c \
 			ft_env.c \
 			ft_core.c \
@@ -25,6 +22,7 @@ SRC_NAME =	ft_0_utility.c \
 			ft_new_process.c \
 			ft_check_argv.c \
 			ft_buildtin_gmb.c \
+			ft_color.c
 
 SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
 
@@ -33,6 +31,12 @@ OBJ_PATH = ./obj/
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
 OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
+
+LIB_PATH = ./libft/
+
+LIB_NAME = libft.a
+
+LIB = $(addprefix -L,$(LIB_PATH))
 
 INC_PATH = ./include/
 
@@ -44,23 +48,28 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
 
+all : lib $(NAME)
 
-
-all: $(NAME)
+lib :
+	make -C $(LIB_PATH) re
+	cp $(LIB_PATH)$(LIB_NAME) .
 
 $(NAME) : $(OBJ)
-	$(CC) $(CFLAGS) $(INC) -o $(NAME) $(OBJ) -g
+	$(CC) $(CFLAGS) $(LIB) $(INC) -o $(NAME) $(LIB_NAME) $(OBJ) -g
 
 $(OBJ_PATH)%.o : $(SRC_PATH)%.c
 	@mkdir $(OBJ_PATH) 2> /dev/null || echo "" > /dev/null
-	$(CC) $(CFLAGS) $(INC) -o $@ -c $< -g
+	$(CC) $(CFLAGS) $(LIB) $(INC) -o $@ -c $< -g
 
 clean :
+	make -C $(LIB_PATH) clean
 	rm -fv $(OBJ)
 	rmdir $(OBJ_PATH) 2> /dev/null || echo "" > /dev/null
 
 fclean : clean
+	make -C $(LIB_PATH) fclean
 	rm -fv $(NAME)
+	rm -fv $(LIB_NAME)
 
 re : fclean all
 

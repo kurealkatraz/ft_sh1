@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/26 15:34:46 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/16 15:41:31 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/19 17:22:19 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,14 @@
 # define FT_MINISHELL
 # define BUF_SIZE 42
 
+# include "colors.h"
+# include "libft.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <dirent.h>
 # include <signal.h>
 # include <limits.h>
+# include <time.h>
 
 typedef struct		s_env
 {
@@ -33,11 +36,14 @@ typedef struct		s_pth
 	struct s_pth	*next;
 }					t_pth;
 
+void	ft_color(char **envp);
 /*
 **	ft_core.c
 */
 char	**ft_fill_envp_clone(char **clone, char **origin);
 void	ft_prompt(char **envp, t_env *env);
+
+void	ft_colors(char **envp);
 
 /*
 **	ft_get_next_line.c
@@ -57,29 +63,6 @@ t_env	*ft_free_member(t_env *current, t_env *saved);
 **	ft_check_argv.c
 */
 int		ft_check_setenv(char *arg);
-
-/*
-**	ft_0_utility.c
-*/
-void	ft_putchar(char c);
-void	ft_putstr(char *str);
-int		ft_strlen(const char *str);
-int		ft_tablen(char **tab);
-char	*ft_strcpy(char *dst, const char *src);
-
-/*
-**	ft_1_utility.c
-*/
-char	*ft_strncpy(char *dst, const char *src, size_t n);
-char	*ft_strjoin(char *s1, char *s2);
-char	*ft_strdup(const char *src);
-int		ft_strcmp(const char *s1, const char *s2);
-char	*ft_strcat(char *s1, char *s2);
-
-/*
-**	ft_2_utility.c (Strsplit)
-*/
-char	**ft_strsplit(char *str, char c);
 
 /*
 ** ft_builtin_utility.c
