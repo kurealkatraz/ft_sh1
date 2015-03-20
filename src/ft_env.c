@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/26 15:46:15 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/19 17:03:17 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/03/20 15:19:17 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ t_env	*ft_new_env(t_env *env, char *full)
 	new->next = env;
 	new->name = (char*)malloc(sizeof(char) * (size + 1));
 	new->name = ft_strncpy(new->name, full, size);
-	new->value = ft_strsub(full, size, (ft_strlen(full) - size));
+	new->value = ft_strsub(full, size + 1, (ft_strlen(full) - size));
 	return (new);
 }
 
