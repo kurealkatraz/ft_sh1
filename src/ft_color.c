@@ -6,7 +6,7 @@
 /*   By: tlebrize <tlebrize@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/17 10:40:28 by tlebrize          #+#    #+#             */
-/*   Updated: 2015/03/19 17:23:59 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/03/20 15:48:35 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,14 @@
 static char	*ft_getend(char *dst, char *src, int j)
 {
 	int		i;
+	int		k;
 
 	i = ft_strlen(src);
-	while (j > 0)
+	k = j;
+	while (k - j < 3)
 		j -= (src[i--] == '/' ? 1 : 0);
-	dst = ft_strncpy(dst, src, i);
+	i++;
+	dst = ft_strncpy(dst, src + i, ft_strlen(src + i));
 	return (dst);
 }
 
@@ -30,16 +33,15 @@ static char	*ft_getpath(void)
 	int		i;
 	int		j;
 
-	if (!(buff = (char*)malloc(sizeof(char*) * (PATH_MAX + 1))) ||
-			!(buff = getcwd(buff, PATH_MAX)) ||
+	if (!(buff = getcwd(NULL, 0)) ||
 			!(fresh = (char*)malloc(sizeof(char) * (ft_strlen(buff) + 1))))
 		return (ft_strdup("MadMoon"));
 	i = ft_strlen(buff);
 	j = 0;
 	while (i > 0)
 		j += (buff[i--] == '/') ? 1 : 0;
-	if (j < 4)
-		fresh = ft_strcpy(fresh, buff);
+	if (j < 3)
+		fresh = ft_strncpy(fresh, buff, ft_strlen(buff));
 	else
 		fresh = ft_getend(fresh, buff, j);
 	free(buff);
