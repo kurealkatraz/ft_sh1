@@ -6,7 +6,7 @@
 #    By: mgras <mgras@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/02/26 15:24:20 by mgras             #+#    #+#              #
-#    Updated: 2015/03/20 15:11:07 by tlebrize         ###   ########.fr        #
+#    Updated: 2015/03/21 19:36:44 by mgras            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SRC_NAME =	ft_0_free.c \
 			ft_new_process.c \
 			ft_check_argv.c \
 			ft_buildtin_gmb.c \
-			ft_color.c
+			ft_color.c \
+			ft_cleaner.c
 
 SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
 
@@ -35,8 +36,6 @@ OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
 LIB_PATH = ./libft/
 
 LIB_NAME = libft.a
-
-LIB = $(addprefix -L,$(LIB_PATH))
 
 INC_PATH = ./include/
 
@@ -55,7 +54,7 @@ lib :
 	cp $(LIB_PATH)$(LIB_NAME) .
 
 $(NAME) : $(OBJ)
-	$(CC) $(CFLAGS) $(LIB) $(INC) -o $(NAME) $(LIB_NAME) $(OBJ) -g
+	$(CC) $(CFLAGS) $(INC) -o $(NAME) $(LIB_NAME) $(OBJ) -g
 
 $(OBJ_PATH)%.o : $(SRC_PATH)%.c
 	@mkdir $(OBJ_PATH) 2> /dev/null || echo "" > /dev/null

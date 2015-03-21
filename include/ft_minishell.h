@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/26 15:34:46 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/19 17:22:19 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/03/21 19:39:30 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,17 @@ typedef struct		s_pth
 	struct s_pth	*next;
 }					t_pth;
 
+/*
+**	ft_cleaner.c
+*/
+int		ft_clean_len(char *dirty_pleb);
+char	*ft_clean_str(char *dirty_pleb);
+
+/*
+**	MLP Fan club
+*/
 void	ft_color(char **envp);
+
 /*
 **	ft_core.c
 */

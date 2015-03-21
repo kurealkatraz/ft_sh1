@@ -6,11 +6,12 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 15:46:17 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/19 17:48:41 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/03/21 19:48:13 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_minishell.h"
+#include <stdio.h>
 
 char	*ft_read(void)
 {
@@ -35,6 +36,7 @@ void	ft_prompt(char **envp, t_env *env)
 		{
 			if (line[0] != '\0')
 			{
+				line = ft_clean_str(line);
 				argv = ft_strsplit(line, ' ');
 				if (1 == ft_is_builtin(argv[0]))
 				{
@@ -55,7 +57,7 @@ void	ft_prompt(char **envp, t_env *env)
 		else
 			exit(-1);
 	}
-	envp = envp;
+	envp = envp + 1;
 }
 
 int		main(int argc, char **argv, char **envp)
@@ -66,7 +68,7 @@ int		main(int argc, char **argv, char **envp)
 	env = NULL;
 	env = ft_get_env(env, envp);
 	ft_prompt(envp, env);
-	argv = argv;
-	argc = argc;
+	argv = argv + 1;
+	argc = argc + 1;
 	return (0);
 }

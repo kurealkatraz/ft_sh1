@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 14:42:02 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/16 17:46:35 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/21 18:56:52 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_env	*ft_setenv(t_env *env, char *mod)
 	int		len;
 
 	swap = env;
+	len = 0;
 	while (mod[len] != '=' && mod[len] != '\0')
 		len++;
 	name = (char*)malloc(sizeof(char) * (len + 1));
