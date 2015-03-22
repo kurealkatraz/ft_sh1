@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlebrize <tlebrize@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/02/25 17:06:03 by tlebrize          #+#    #+#             */
-/*   Updated: 2015/03/05 22:24:17 by tlebrize         ###   ########.fr       */
+/*   Created: 2015/03/04 19:58:04 by mgras             #+#    #+#             */
+/*   Updated: 2015/03/06 21:53:12 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,21 @@
 
 size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	size_t	dlen;
-	size_t	slen;
-	size_t	i;
+	char	*str;
+	char	*swipe;
+	size_t	len;
 
-	i = 0;
-	dlen = ft_strlen(dst);
-	slen = ft_strlen(src);
-	if (size > dlen + 1)
+	str = (char *)ft_memchr(dst, '\0', size);
+	if (str == NULL)
+		return (size + ft_strlen(src));
+	swipe = (char *)src;
+	len = (size_t)(str - dst) + ft_strlen(swipe);
+	while ((size_t)(str - dst) < size - 1 && *swipe != '\0')
 	{
-		while (i < (size - dlen - 1))
-		{
-			dst[dlen + i] = src[i];
-			i++;
-		}
-		dst[dlen + i] = '\0';
+		*str = *swipe;
+		str++;
+		swipe++;
 	}
-	if (size >= dlen)
-		return (dlen + slen);
-	return ((dlen + slen) - (dlen - size));
+	*str = '\0';
+	return (len);
 }

@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/26 15:46:15 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/20 15:56:31 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/03/22 18:23:04 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ char	**ft_get_envp(t_env *env)
 		i++;
 		swap = swap->next;
 	}
-	envp[i] = NULL;
 	return (envp);
 }
 

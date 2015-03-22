@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 15:46:17 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/21 19:48:13 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/22 18:26:06 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,14 @@ void	ft_prompt(char **envp, t_env *env)
 					else
 						ft_new_process(path, argv, env);
 				}
-				ft_free_argv(argv);
 				free(line);
-				argv = NULL;
+				ft_free_argv(argv);
 			}
 		}
 		else
 			exit(-1);
 	}
-	envp = envp + 1;
+	(void)envp;
 }
 
 int		main(int argc, char **argv, char **envp)

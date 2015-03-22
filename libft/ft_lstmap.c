@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlebrize <tlebrize@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/07 22:28:49 by tlebrize          #+#    #+#             */
-/*   Updated: 2015/03/09 13:41:07 by tlebrize         ###   ########.fr       */
+/*   Created: 2015/03/06 22:32:07 by mgras             #+#    #+#             */
+/*   Updated: 2015/03/22 15:18:48 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,29 @@
 
 t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	t_list	*fresh;
-	t_list	*swap;
-	t_list	*tmp;
+	t_list	*begin_list;
+	t_list	*list;
+	t_list	*new;
 
-	tmp = f(lst);
-	if ((fresh = ft_lstnew(tmp->content, tmp->content_size)))
+	list = (t_list *)malloc(sizeof(t_list));
+	begin_list = list;
+	if (list && (*f) && lst)
 	{
-		swap = fresh;
-		lst = lst->next;
-		while (lst != NULL)
+		list = (*f)(lst);
+		begin_list = list;
+		while (lst->next)
 		{
-			tmp = f(lst);
-			if (!(swap->next = ft_lstnew(tmp->content, tmp->content_size)))
-				return (NULL);
-			swap = swap->next;
 			lst = lst->next;
+			new = (t_list *)malloc(sizeof(t_list));
+			if (new)
+			{
+				new = (*f)(lst);
+				list->next = new;
+				list = list->next;
+			}
+			else
+				return (NULL);
 		}
 	}
-	return (fresh);
+	return (begin_list);
 }

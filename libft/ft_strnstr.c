@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlebrize <tlebrize@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/05 15:53:58 by tlebrize          #+#    #+#             */
-/*   Updated: 2015/03/05 19:10:59 by tlebrize         ###   ########.fr       */
+/*   Created: 2015/03/04 21:53:19 by mgras             #+#    #+#             */
+/*   Updated: 2015/03/06 21:51:39 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,16 @@
 
 char	*ft_strnstr(const char *s1, const char *s2, size_t n)
 {
-	size_t		i;
-	size_t		j;
+	size_t	len2;
 
-	i = 0;
-	if (s2[i] == '\0')
-		return ((char*)s1);
-	while ((char)s1[i] != '\0' && i != n)
+	if (*s2 == '\0')
+		return ((char *)s1);
+	len2 = ft_strlen(s2);
+	while (*s1 != '\0' && n-- >= len2)
 	{
-		j = 0;
-		while (s2[j] != '\0' && s1[i + j] != '\0' && s2[j] == s1[i + j]
-				&& i + j != n)
-			j++;
-		if (s2[j] == '\0')
-			return ((char*)s1 + i);
-		i++;
+		if (*s1 == *s2 && ft_memcmp(s1, s2, len2) == 0)
+			return ((char *)s1);
+		s1++;
 	}
 	return (NULL);
 }

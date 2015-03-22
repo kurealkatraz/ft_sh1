@@ -3,53 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlebrize <tlebrize@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/07 19:27:39 by tlebrize          #+#    #+#             */
-/*   Updated: 2015/03/09 13:48:01 by tlebrize         ###   ########.fr       */
+/*   Created: 2015/03/06 17:49:14 by mgras             #+#    #+#             */
+/*   Updated: 2015/03/06 21:49:12 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	ft_intlen(int n)
+static void		lengths(int n, size_t *len, int *weight)
 {
-	size_t	len;
-
-	len = 0;
-	if (n < 0)
-		len = 1;
-	if (n == 0)
-		return (1);
-	while (n != 0)
+	*len = 1;
+	if (n >= 0)
 	{
-		len++;
-		n = n / 10;
+		*len = 0;
+		n = -n;
 	}
-	return (len);
+	*weight = 1;
+	while (n / *weight < -9)
+	{
+		*weight *= 10;
+		*len += 1;
+	}
 }
 
 char			*ft_itoa(int n)
 {
-	size_t	len;
-	char	*str;
+	size_t		len;
+	int			weight;
+	size_t		cur;
+	char		*str;
 
-	len = ft_intlen(n);
-	if (!(str = (char*)malloc(sizeof(char) * (1 + len))))
+	lengths(n, &len, &weight);
+	str = (char *)malloc(sizeof(*str) * (len + 1));
+	if (str == NULL)
 		return (NULL);
-	str[len] = '\0';
+	cur = 0;
 	if (n < 0)
-		str[0] = '-';
-	while ((len > 0 && str[0] != '-') || (len > 1 && str[0] == '-'))
 	{
-		len--;
-		if (n > 0)
-			str[len] = '0' + n % 10;
-		else if (n < 0)
-			str[len] = '0' + -1 * (n % 10);
-		else
-			str[len] = '0';
-		n = n / 10;
+		str[cur] = '-';
+		cur++;
 	}
+	if (n > 0)
+		n = -n;
+	while (weight >= 1)
+	{
+		str[cur++] = -(n / weight % 10) + 48;
+		weight /= 10;
+	}
+	str[cur] = '\0';
 	return (str);
 }

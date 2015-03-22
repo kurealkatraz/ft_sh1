@@ -5,73 +5,97 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/20 16:24:10 by tlebrize          #+#    #+#             */
-/*   Updated: 2015/03/21 19:47:10 by mgras            ###   ########.fr       */
+/*   Created: 2015/03/05 19:21:17 by mgras             #+#    #+#             */
+/*   Updated: 2015/03/06 21:56:35 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		ft_getwc(const char *str, char c)
+static char		**ft_alloc_tab(char *str, char c)
 {
-	int		wc;
+	char	**new_tab;
 	int		i;
+	int		j;
 
-	wc = 0;
 	i = 0;
-	if (str[i] == '\0')
-		return (0);
-	else if (str[i + 1] == '\0')
-		return ((str[0] == c) ? 0 : 1);
-	while (str[i + 1] != '\0')
-	{
-		if ((str[i] == c) && (str[i + 1] != c))
-			wc++;
-		else if (i == 0 && str[i] != c)
-			wc++;
-		i++;
-	}
-	return (wc);
+	j = 0;
+	while (str[i] != '\0')
+		j = (str[i++] == c ? j + 1 : j);
+	new_tab = (char**)malloc(sizeof(char*) * (j + 2));
+	new_tab[j + 1] = NULL;
+	return (new_tab);
 }
 
-static int		ft_getwlen(const char *str, int i, char c)
+static int		ft_get_clean_len(char *str, char c)
 {
 	int		len;
+	int		i;
 
-	len = 1;
-	while (str[i] != c && str[i] != '\0')
+	len = 0;
+	i = 0;
+	while (str[i] != '\0')
+		len += (str[i++] == c ? 0 : 1);
+	if (2 == ft_strlen(str))
+		return (len);
+	i = 0;
+	while (str[i + 1] != '\0' && str[i] == c)
+		i++;
+	while (str[i + 1] != '\0')
 	{
-		len++;
+		len += ((str[i] == c && str[i + 1] != c) ? 1 : 0);
 		i++;
 	}
 	return (len);
 }
 
-char			**ft_strsplit(const char *str, char c)
+static char		*ft_get_clean_line(char *str, char c)
 {
-	char	**fresh;
-	int		wc;
-	int		i;
+	char	*clean;
 	int		len;
-	int		j;
+	int		i;
 
-	if (!str)
-		return (NULL);
-	wc = ft_getwc(str, c);
-	if (!(fresh = (char**)malloc(sizeof(char*) * (wc + 1))))
-		return (NULL);
+	len = ft_get_clean_len(str, c);
+	clean = (char*)malloc(sizeof(char) * len + 1);
+	i = 0;
+	len = 0;
+	while (str[i] == c && str[i + 1] != '\0')
+		i++;
+	while (str[i + 1] != '\0')
+	{
+		if ((str[i] == c && str[i + 1] != c) || str[i] != c)
+			clean[len++] = str[i];
+		i++;
+	}
+	if (str[i] != c)
+		clean[len++] = str[i];
+	clean[len] = '\0';
+	return (clean);
+}
+
+char			**ft_strsplit(char const *str, char c)
+{
+	char	**new_tab;
+	char	*clean_str;
+	int		i;
+	int		j;
+	int		k;
+
 	i = 0;
 	j = 0;
-	while (j != wc)
+	k = 0;
+	clean_str = ft_get_clean_line((char*)str, c);
+	new_tab = ft_alloc_tab(clean_str, c);
+	while (clean_str[i] != '\0')
 	{
-		while (str[i] == c && str[i] != '\0')
-			i++;
-		len = ft_getwlen(str, i, c);
-		if (!(fresh[j] = ft_strsub(str, i, len)))
-			return (NULL);
-		i += len;
-		j++;
+		j = i;
+		while (clean_str[j] != c && clean_str[j] != '\0')
+			j++;
+		new_tab[k] = (char*)malloc(sizeof(char) * (j - i + 1));
+		new_tab[k] = ft_strncpy(new_tab[k], clean_str + i, j - i);
+		new_tab[k++][j - i] = '\0';
+		i = (j + 1);
 	}
-	fresh[j] = NULL;
-	return (fresh);
+	free(clean_str);
+	return (new_tab);
 }

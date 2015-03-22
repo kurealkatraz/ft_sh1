@@ -3,51 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlebrize <tlebrize@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/07 19:25:11 by tlebrize          #+#    #+#             */
-/*   Updated: 2015/03/09 13:46:48 by tlebrize         ###   ########.fr       */
+/*   Created: 2015/03/06 18:37:38 by mgras             #+#    #+#             */
+/*   Updated: 2015/03/06 21:49:45 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	ft_intlen(int n)
+void	ft_putnbr_fd(int n, int fd)
 {
-	size_t	len;
-
-	len = 0;
-	if (n == 0)
-		return (1);
-	while (n != 0)
+	if (n == -2147483648)
+		ft_putstr_fd("-2147483648", fd);
+	else
 	{
-		len++;
-		n = n / 10;
-	}
-	return (len);
-}
-
-void			ft_putnbr_fd(int n, int fd)
-{
-	size_t	len;
-	char	*str;
-
-	if (n < 0)
-		ft_putchar_fd('-', fd);
-	len = ft_intlen(n);
-	if (!(str = (char*)malloc(sizeof(char) * (1 + len))))
-		return ;
-	str[len] = '\0';
-	while (len-- > 0)
-	{
-		if (n > 0)
-			str[len] = '0' + n % 10;
-		else if (n < 0)
-			str[len] = '0' + -1 * (n % 10);
+		if (n < 0)
+		{
+			ft_putchar_fd('-', fd);
+			n = -n;
+		}
+		if (n >= 10)
+		{
+			ft_putnbr_fd(n / 10, fd);
+			ft_putnbr_fd(n % 10, fd);
+		}
 		else
-			str[len] = '0';
-		n = n / 10;
+			ft_putchar_fd(n + '0', fd);
 	}
-	ft_putstr_fd(str, fd);
-	free(str);
 }

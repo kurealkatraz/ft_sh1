@@ -6,11 +6,12 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 15:42:51 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/20 16:03:24 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/03/22 17:42:02 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_minishell.h"
+#include <stdio.h>
 
 char	*ft_split_path(char *value)
 {
@@ -139,6 +140,4 @@ void	ft_new_process(char *path, char **argv, t_env *env)
 	}
 	else
 		wait(&sys_stat);
-	free(envp);
-	free(bin);
 }
