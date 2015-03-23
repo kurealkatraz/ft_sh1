@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/26 15:46:15 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/22 18:23:04 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/23 10:18:32 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	**ft_get_envp(t_env *env)
 	{
 		len = ft_strlen(swap->value) + ft_strlen(swap->name) + 2;
 		envp[i] = (char*)malloc(sizeof(char) * len);
-		envp[i] = ft_strcat(envp[i], swap->name);
+		envp[i] = ft_strcpy(envp[i], swap->name);
 		envp[i] = ft_strcat(envp[i], "=");
 		envp[i] = ft_strcat(envp[i], swap->value);
 		i++;
