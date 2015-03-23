@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/21 19:01:03 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/23 16:42:07 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/23 16:53:38 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		ft_clean_len(char *dirty_pleb)
 	{
 		if (dirty_pleb[swipe] == ' ' || dirty_pleb[swipe] == '\t')
 		{
-			while (dirty_pleb[swipe] == ' ' || dirty_pleb[swipe] == '\t')
+			while ((dirty_pleb[swipe] == ' ' || dirty_pleb[swipe] == '\t') && dirty_pleb[swipe] != '\0')
 				swipe++;
 			if (dirty_pleb[swipe != '\0'])
 				len++;
