@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/05 19:21:17 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/23 11:01:28 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/23 11:19:36 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static char		**ft_alloc_tab(char *str, char c)
 	while (str[i] != '\0')
 		j = (str[i++] == c ? j + 1 : j);
 	new_tab = (char**)malloc(sizeof(char*) * (j + 2));
-	new_tab[j + 2] = NULL;
+	new_tab[j + 1] = NULL;
 	return (new_tab);
 }
 
@@ -50,8 +50,7 @@ char			**ft_strsplit(char const *str, char c)
 		new_tab[k][j - i] = '\0';
 		printf("argv[%d] <%s>\n", k, new_tab[k]);
 		k++;
-		new_tab[k] = NULL;
-		if (j != '\0')
+		if (str[j] != '\0')
 			i = (j + 1);
 		else
 			i = j;
