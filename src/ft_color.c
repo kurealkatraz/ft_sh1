@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/17 10:40:28 by tlebrize          #+#    #+#             */
-/*   Updated: 2015/03/22 14:48:11 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/23 16:31:27 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ void		ft_colors(char **envp)
 	ft_putstr(C_RED" - ");
 	ft_putstr(C_GREEN);
 	ft_putstr(time);
+	ft_putstr(C_RED" - ");
 	ft_putstr(C_MAGENTA);
 	ft_putstr(path);
 	ft_putstr(" : "C_NONE);

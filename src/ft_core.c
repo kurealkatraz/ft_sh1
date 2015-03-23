@@ -6,12 +6,11 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 15:46:17 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/22 18:26:06 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/23 16:25:04 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_minishell.h"
-#include <stdio.h>
 
 char	*ft_read(void)
 {
@@ -36,6 +35,7 @@ void	ft_prompt(char **envp, t_env *env)
 		{
 			if (line[0] != '\0')
 			{
+				ft_putendl(line);
 				line = ft_clean_str(line);
 				argv = ft_strsplit(line, ' ');
 				if (1 == ft_is_builtin(argv[0]))
@@ -45,7 +45,7 @@ void	ft_prompt(char **envp, t_env *env)
 				else
 				{
 					if ((path = ft_find_bin(argv[0], env)) == NULL)
-						ft_putstr("not found\n");
+						ft_putstr("Command not found\n");
 					else
 						ft_new_process(path, argv, env);
 				}
