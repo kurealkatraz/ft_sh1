@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/21 19:01:03 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/21 19:39:45 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/23 16:42:07 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ char	*ft_clean_str(char *dirty_pleb)
 		ts++;
 	clean_pleb = (char*)malloc(sizeof(char) * (ft_clean_len(dirty_pleb) + 1));
 	clean_pleb[ft_clean_len(dirty_pleb + 1)] = '\0';
-	while (dirty_pleb[ts])
+	while (dirty_pleb[ts] != '\0')
 	{
 		if (dirty_pleb[ts] == ' ' || dirty_pleb[ts] == '\t')
 		{
-			while (dirty_pleb[ts] == ' ' || dirty_pleb[ts] == '\t')
+			while ((dirty_pleb[ts] == ' ' || dirty_pleb[ts] == '\t') && dirty_pleb[ts] != '\0')
 				ts++;
 			if (dirty_pleb[ts] != '\0' && ss != 0)
 				clean_pleb[ss++] = ' ';
