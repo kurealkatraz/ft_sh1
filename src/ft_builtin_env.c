@@ -6,7 +6,7 @@
 /*   By: tlebrize <tlebrize@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/23 16:42:38 by tlebrize          #+#    #+#             */
-/*   Updated: 2015/03/24 16:35:52 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/03/24 18:30:49 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ static int		ft_get_index(char **argv)
 			return (i);
 		i++;
 	}
-	return (i);
+	return (-1);
 }
 
-char	**ft_make_argv(char **argv, int i)
+char			**ft_make_argv(char **argv, int i)
 {
 	int		size;
 	char	**fresh;
@@ -48,14 +48,20 @@ char	**ft_make_argv(char **argv, int i)
 	return (fresh);
 }
 
-t_env	*ft_env_i(char **argv, t_env *env)
+static t_env	*tfw_no_gf(char **argv, t_env *env)
+{
+	return (env);
+}
+
+t_env			*ft_env_i(char **argv, t_env *env)
 {
 	char	*path;
 	int		i;
 	t_env	*base;
 	char	**arg;
 
-	i = ft_get_index(argv);
+	if ((i = ft_get_index(argv)) == -1)
+		return (tfw_no_gf(argv, env));
 	if ((path = ft_find_bin(argv[i], env)) == NULL)
 	{
 		ft_putstr("nope\n");
