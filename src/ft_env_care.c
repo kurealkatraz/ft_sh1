@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/24 13:35:12 by tlebrize          #+#    #+#             */
-/*   Updated: 2015/03/24 16:28:20 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/24 16:45:33 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_env	*ft_env_generator(t_env *env, char **med, int markpos)
 {
 	int		pos;
 
-	pos = 1;
+	pos = 2;
 	env = ft_minimal_env_gen(env);
 	while (pos < markpos)
 	{

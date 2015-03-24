@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 14:42:02 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/21 18:56:52 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/24 17:31:35 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,12 @@ t_env	*ft_setenv(t_env *env, char *mod)
 		{
 			env = ft_unsetenv(env, name);
 			env = ft_setenv(env, mod);
-			return (env);
 		}
 		else if (swap->next == NULL)
-		{
-			swap->next = ft_new_env(NULL, mod);
-			return (env);
-		}
+			env = ft_new_env(env, mod);
 		swap = swap->next;
 	}
+	free(name);
 	return (env);
 }
 

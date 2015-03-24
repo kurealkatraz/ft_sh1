@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 15:46:17 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/24 15:45:19 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/03/24 17:22:13 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,7 @@ int		main(int argc, char **argv, char **envp)
 {
 	t_env	*env;
 
-	env = (t_env*)malloc(sizeof(t_env));
-	env = NULL;
-	env = ft_get_env(env, envp);
+	env = ft_get_env(NULL, envp);
 	ft_prompt(envp, env);
 	argv = argv + 1;
 	argc = argc + 1;
