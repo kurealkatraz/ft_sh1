@@ -6,13 +6,14 @@
 #    By: mgras <mgras@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/02/26 15:24:20 by mgras             #+#    #+#              #
-#    Updated: 2015/03/24 13:24:04 by mgras            ###   ########.fr        #
+#    Updated: 2015/03/24 13:27:55 by tlebrize         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC_PATH = ./src/
 
-SRC_NAME =	ft_builtin_env.c \
+SRC_NAME =	env_care.c \
+			ft_builtin_env.c \
 			ft_0_free.c \
 			ft_builtin_utility.c \
 			ft_env.c \
