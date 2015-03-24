@@ -6,29 +6,36 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/24 18:36:49 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/24 19:12:32 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/24 19:32:43 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		Bentobox_Sushisnatch(char **argv, char cmp, int pos, int markpos)
+#include "ft_minishell.h"
+
+static int		Bentobox_Sushisnatch(char **argv, char *cmp, int pos)
 {
-	while (pos < markpos)
+	int		cmplen;
+
+	cmplen = 0;
+	while (cmp[cmplen] != '=')
+		cmplen++;
+	while (argv[pos] != NULL)
 	{
-		if (ft_strcmp(cmp, argv[pos]) == 0)
+		if (ft_strncmp(cmp, argv[pos++], cmplen) == 0)
 			return (1);
 	}
 	return (0);
 }
 
-char	**Bellatrix_Cuddlecunt(char **argv, int markpos)
+void	Bellatrix_Cuddlecunt(char **argv)
 {
 	int		pos;
 
-	pos = 0;
-	while (pos < markpos)
+	pos = 2;
+	while (argv[pos] != NULL)
 	{
-		if (Bentobox_Sushisnatch(argv, argv[pos], pos, markpos) == 0)
-			ft_putendl(argv[pos])
+		if (Bentobox_Sushisnatch(argv, argv[pos], pos + 1) == 0)
+			ft_putendl(argv[pos]);
 		pos++;
 	}
 }

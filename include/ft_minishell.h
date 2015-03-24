@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/26 15:34:46 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/24 19:09:46 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/24 19:21:41 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct		s_pth
 /*
 **	Vorpalblade_Snickersnack.c
 */
-char	**Bellatrix_Cuddlecunt(char **argv, int markpos);
+void	Bellatrix_Cuddlecunt(char **argv);
 
 /*
 ** ft_env_care.c
