@@ -6,12 +6,11 @@
 /*   By: tlebrize <tlebrize@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/23 16:42:38 by tlebrize          #+#    #+#             */
-/*   Updated: 2015/03/24 13:25:57 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/03/24 13:33:41 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_minishell.h"
-#include <stdio.h> //y
 
 static int		ft_get_index(char **argv)
 {
@@ -62,7 +61,9 @@ void			ft_env_i(char **argv, t_env *env)
 		ft_putstr("nope\n");
 		return ;
 	}
-	else
-		arg = ft_make_argv(argv, i);
+	arg = ft_make_argv(argv, i);
+	base = ft_minimal_env_gen(NULL);
+	ft_new_process(path, arg, base);
+	base = ft_free_all_env(base);
 	free(path);
 }
