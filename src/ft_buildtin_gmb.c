@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/14 10:27:47 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/16 15:39:54 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/24 12:27:35 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
  	}
  	else if (index == 1)
  		ft_putstr("U WOT M8 ? REMOVING HOME JUST LIKE THAT ? OH HELL NO\n");
+ 	else if (index == 2)
+ 		ft_putstr("Nope dis ain't goin to work mate\n");
  }
 
 t_env	*ft_home_cd(t_env *env)

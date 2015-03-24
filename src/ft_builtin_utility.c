@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 10:12:20 by tlebrize          #+#    #+#             */
-/*   Updated: 2015/03/16 15:59:55 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/24 12:27:17 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@ t_env	*ft_builtin(char **argv, t_env *env)
 {
 	if (0 == ft_strcmp(argv[0], "cd") && argv[1] != NULL)
 	{
+		if (argv[2])
+		{
+			ft_cd_errors(2, NULL);
+			return (env);
+		}
 		env = ft_maj_pwd(env);
 		return (ft_cd(env, argv[1]));
 	}

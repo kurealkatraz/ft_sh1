@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 15:46:17 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/23 16:43:42 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/24 12:54:41 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	ft_prompt(char **envp, t_env *env)
 		else
 			exit(-1);
 	}
+	env = ft_free_all_env(env);
 	(void)envp;
 }
 
