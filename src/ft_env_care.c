@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/24 13:35:12 by tlebrize          #+#    #+#             */
-/*   Updated: 2015/03/24 15:57:20 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/24 16:28:20 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,21 @@ t_env	*ft_minimal_env_gen(t_env *env)
 	env = ft_new_env(env, "PATH=/bin:usr/bin");
 	env = ft_new_env(env, ft_strjoin("PWD=", getcwd(NULL, PATH_MAX)));
 	env = ft_new_env(env, "_=usr/bin/env");
+	return (env);
+}
+
+t_env	*ft_env_generator(t_env *env, char **med, int markpos)
+{
+	int		pos;
+
+	pos = 1;
+	env = ft_minimal_env_gen(env);
+	while (pos < markpos)
+	{
+		if (ft_check_setenv(med[pos]) == 1)
+			env = ft_new_env(env, med[pos]);
+		pos++;
+	}
 	return (env);
 }
 
