@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 15:42:51 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/24 17:29:45 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/24 17:39:56 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,22 +126,12 @@ void	ft_new_process(char *path, char **argv, t_env *env)
 	char	**envp;
 	char	*bin;
 	int		sys_stat;
-	int		ERASEMESENPAI;
 
 	bin = (char*)malloc(sizeof(char) * (ft_strlen(path) + ft_strlen(argv[0]) + 2));
 	bin = ft_strncpy(bin, path, ft_strlen(path));
 	bin = ft_strcat(bin, "/");
 	bin = ft_strcat(bin, argv[0]);
 	envp = ft_get_envp(env);
-	ERASEMESENPAI = 0;
-	while (argv[ERASEMESENPAI] != NULL)
-		ft_putendl(argv[ERASEMESENPAI++]);
-	ERASEMESENPAI = 0;
-	ft_putendl("__");
-	while (envp[ERASEMESENPAI] != NULL)
-		ft_putendl(envp[ERASEMESENPAI++]);
-	ft_putendl("__");
-	ft_putendl(bin);
 	pid = fork();
 	if (pid == 0)
 	{
