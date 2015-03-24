@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/26 15:34:46 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/24 15:53:42 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/03/24 16:35:57 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct		s_pth
 */
 t_env	*ft_minimal_env_gen(t_env *env);
 t_env	*ft_free_all_env(t_env *env);
+t_env	*ft_env_generator(t_env *env, char **med, int markpos);
 /*
 ** ft_builtin_env.c
 */

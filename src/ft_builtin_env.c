@@ -6,7 +6,7 @@
 /*   By: tlebrize <tlebrize@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/23 16:42:38 by tlebrize          #+#    #+#             */
-/*   Updated: 2015/03/24 15:49:38 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/03/24 16:35:52 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ t_env	*ft_env_i(char **argv, t_env *env)
 		return (env);
 	}
 	arg = ft_make_argv(argv, i);
-	base = ft_minimal_env_gen(NULL);
+	base = ft_env_generator(NULL, argv, i);
 	ft_new_process(path, arg, base);
 	base = ft_free_all_env(base);
 	free(path);
