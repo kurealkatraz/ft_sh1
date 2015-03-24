@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_env_care.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tlebrize <tlebrize@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/24 13:35:12 by tlebrize          #+#    #+#             */
-/*   Updated: 2015/03/24 13:35:14 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/03/24 15:57:20 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_env	*ft_minimal_env_gen(t_env *env)
 {
 	if (env != NULL)
 		env = ft_free_all_env(env);
-	env = ft_new_env(env, "PATH=/bin");
+	env = ft_new_env(env, "PATH=/bin:usr/bin");
 	env = ft_new_env(env, ft_strjoin("PWD=", getcwd(NULL, PATH_MAX)));
 	env = ft_new_env(env, "_=usr/bin/env");
 	return (env);
