@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/26 15:34:46 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/24 13:34:53 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/03/24 15:53:42 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ typedef struct		s_pth
 t_env	*ft_minimal_env_gen(t_env *env);
 t_env	*ft_free_all_env(t_env *env);
 /*
-** ft_env_builtin.c
+** ft_builtin_env.c
 */
-void	ft_env_i(char **argv, t_env *env);
+t_env	*ft_env_i(char **argv, t_env *env);
 char	**ft_make_argv(char **argv, int i);
 /*
 **	ft_cleaner.c
@@ -89,7 +89,7 @@ int		ft_check_setenv(char *arg);
 */
 int		ft_is_builtin(char *name);
 t_env	*ft_builtin(char **argv, t_env *env);
-t_env	*ft_builtin_env(t_env *env);
+t_env	*ft_builtin_env(char **argv, t_env *env);
 
 /*
 **	ft_builtin_fnc.c

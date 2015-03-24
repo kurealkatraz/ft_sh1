@@ -6,7 +6,7 @@
 /*   By: tlebrize <tlebrize@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/23 16:42:38 by tlebrize          #+#    #+#             */
-/*   Updated: 2015/03/24 13:33:41 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/03/24 15:49:38 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	**ft_make_argv(char **argv, int i)
 	return (fresh);
 }
 
-void			ft_env_i(char **argv, t_env *env)
+t_env	*ft_env_i(char **argv, t_env *env)
 {
 	char	*path;
 	int		i;
@@ -59,11 +59,12 @@ void			ft_env_i(char **argv, t_env *env)
 	if ((path = ft_find_bin(argv[i], env)) == NULL)
 	{
 		ft_putstr("nope\n");
-		return ;
+		return (env);
 	}
 	arg = ft_make_argv(argv, i);
 	base = ft_minimal_env_gen(NULL);
 	ft_new_process(path, arg, base);
 	base = ft_free_all_env(base);
 	free(path);
+	return (env);
 }

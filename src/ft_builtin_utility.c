@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 10:12:20 by tlebrize          #+#    #+#             */
-/*   Updated: 2015/03/24 12:27:17 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/24 15:55:21 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_env	*ft_builtin(char **argv, t_env *env)
 	else if (0 == ft_strcmp(argv[0], "cd") && argv[1] == NULL)
 		return (ft_cd(env, NULL));
 	else if (0 == ft_strcmp(argv[0], "env"))
-		return (ft_builtin_env(env));
+		return (ft_builtin_env(argv, env));
 	else if (0 == ft_strcmp(argv[0], "setenv") && argv[1] != NULL)
 	{
 		if (ft_check_setenv(argv[1]) == 1)
@@ -53,11 +53,18 @@ t_env	*ft_builtin(char **argv, t_env *env)
 	return (env);
 }
 
-t_env	*ft_builtin_env(t_env *env)
+t_env	*ft_builtin_env(char **argv, t_env *env)
 {
 	t_env	*swap;
 
 	swap = env;
+	if (argv[1])
+	{
+		if (!(argv[2]))
+			return (env);
+		if (0 == ft_strcmp(argv[1], "-i"))
+			return (ft_env_i(argv, env));
+	}
 	while (swap != NULL)
 	{
 		ft_putstr(swap->name);
