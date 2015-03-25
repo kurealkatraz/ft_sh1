@@ -6,13 +6,13 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 15:46:17 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/24 17:22:13 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/25 16:17:25 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_minishell.h"
 
-char	*ft_read(void)
+char			*ft_read(void)
 {
 	char	*line;
 
@@ -21,7 +21,7 @@ char	*ft_read(void)
 	return (NULL);
 }
 
-void	ft_prompt(char **envp, t_env *env)
+void			ft_prompt(char **envp, t_env *env)
 {
 	char	*line;
 	char	**argv;
@@ -57,11 +57,28 @@ void	ft_prompt(char **envp, t_env *env)
 	(void)envp;
 }
 
-int		main(int argc, char **argv, char **envp)
+static t_env	*shlvl_pp(t_env *env)
+{
+	t_env	*swap;
+	int		inception;
+
+	swap = env;
+	while (swap->next != NULL && 0 != ft_strncmp("SHLVL", swap->name, 5))
+		swap = swap->next;
+	if (swap->next == NULL)
+		return (swap);
+	inception = ft_atoi(swap->value) + 1;
+	free(swap->value);
+	swap->value = ft_itoa(inception);
+	return (env);
+}
+
+int				main(int argc, char **argv, char **envp)
 {
 	t_env	*env;
 
 	env = ft_get_env(NULL, envp);
+	env = shlvl_pp(env);
 	ft_prompt(envp, env);
 	argv = argv + 1;
 	argc = argc + 1;
