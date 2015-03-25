@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 15:42:51 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/24 17:46:09 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/25 16:47:14 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,30 +68,6 @@ t_pth	*ft_get_pth(t_pth *pth, t_env *env)
 	return (pth);
 }
 
-void	ft_free_pth(t_pth *pth)
-{
-	t_pth	*save;
-
-	while (pth != NULL)
-	{
-		save = pth;
-		pth = pth->next;
-		free(save->path);
-		free(save);
-	}
-	save = NULL;
-	pth = NULL;
-}
-
-char	*ft_clear_pth(t_pth *save, t_pth *curr)
-{
-	char	*dubs;
-
-	dubs = ft_strdup(curr->path);
-	ft_free_pth(save);
-	return (dubs);
-}
-
 char	*ft_find_bin(char *bin, t_env *env)
 {
 	t_pth			*pth;
@@ -102,7 +78,7 @@ char	*ft_find_bin(char *bin, t_env *env)
 	pth = (t_pth*)malloc(sizeof(t_pth));
 	pth = NULL;
 	if (!(pth = ft_get_pth(pth, env)))
-		return(NULL);
+		return (NULL);
 	save = pth;
 	while (pth != NULL)
 	{
@@ -127,7 +103,8 @@ void	ft_new_process(char *path, char **argv, t_env *env)
 	char	*bin;
 	int		sys_stat;
 
-	bin = (char*)malloc(sizeof(char) * (ft_strlen(path) + ft_strlen(argv[0]) + 2));
+	bin = (char*)malloc(sizeof(char) * (ft_strlen(path) +
+				ft_strlen(argv[0]) + 2));
 	bin = ft_strncpy(bin, path, ft_strlen(path));
 	bin = ft_strcat(bin, "/");
 	bin = ft_strcat(bin, argv[0]);

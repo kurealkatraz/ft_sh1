@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/17 10:40:28 by tlebrize          #+#    #+#             */
-/*   Updated: 2015/03/23 16:31:27 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/25 16:42:51 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static char	*ft_getpath(void)
 static char	*ft_gettime(void)
 {
 	char	t[26];
-	time_t tloc;
+	time_t	tloc;
 
 	time(&tloc);
 	ft_strcpy(t, ctime(&tloc));
@@ -86,13 +86,16 @@ void		ft_colors(char **envp)
 	path = ft_getpath();
 	ft_putstr(C_CYAN);
 	ft_putstr(name);
-	ft_putstr(C_RED" - ");
+	ft_putstr(C_RED);
+	ft_putstr(" - ");
 	ft_putstr(C_GREEN);
 	ft_putstr(time);
-	ft_putstr(C_RED" - ");
+	ft_putstr(C_RED);
+	ft_putstr(" - ");
 	ft_putstr(C_MAGENTA);
 	ft_putstr(path);
-	ft_putstr(" : "C_NONE);
+	ft_putstr(" : ");
+	ft_putstr(C_NONE);
 	free(path);
 	free(name);
 	free(time);
