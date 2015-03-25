@@ -6,49 +6,45 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 15:46:17 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/25 16:17:25 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/03/25 16:36:04 by tlebrize         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_minishell.h"
 
-char			*ft_read(void)
+static t_env	*ft_core(char *line, t_env *env)
 {
-	char	*line;
+	char	**argv;
+	char	*path;
 
-	if (ft_get_next_line(0, &line) == 1)
-		return (line);
-	return (NULL);
+	line = ft_clean_str(line);
+	argv = ft_strsplit(line, ' ');
+	if (1 == ft_is_builtin(argv[0]))
+		env = ft_builtin(argv, env);
+	else
+	{
+		if ((path = ft_find_bin(argv[0], env)) == NULL)
+			ft_putstr("Command not found\n");
+		else
+			ft_new_process(path, argv, env);
+	}
+	free(line);
+	ft_free_argv(argv);
+	return (env);
 }
 
 void			ft_prompt(char **envp, t_env *env)
 {
 	char	*line;
-	char	**argv;
-	char	*path;
 
 	while (42)
 	{
 		line = NULL;
 		ft_colors(envp);
-		if (NULL != (line = ft_read()))
+		if (1 == ft_get_next_line(0, &line))
 		{
 			if (line[0] != '\0')
-			{
-				line = ft_clean_str(line);
-				argv = ft_strsplit(line, ' ');
-				if (1 == ft_is_builtin(argv[0]))
-					env = ft_builtin(argv, env);
-				else
-				{
-					if ((path = ft_find_bin(argv[0], env)) == NULL)
-						ft_putstr("Command not found\n");
-					else
-						ft_new_process(path, argv, env);
-				}
-				free(line);
-				ft_free_argv(argv);
-			}
+				env = ft_core(line, env);
 		}
 		else
 			exit(-1);
