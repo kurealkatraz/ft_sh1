@@ -6,13 +6,13 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/23 16:42:38 by tlebrize          #+#    #+#             */
-/*   Updated: 2015/03/24 19:21:56 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/25 17:10:04 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_minishell.h"
 
-static int		ft_get_index(char **argv)
+int		ft_get_index(char **argv)
 {
 	int		i;
 	int		j;
@@ -30,7 +30,7 @@ static int		ft_get_index(char **argv)
 	return (-1);
 }
 
-char			**ft_make_argv(char **argv, int i)
+char	**ft_make_argv(char **argv, int i)
 {
 	int		size;
 	char	**fresh;
@@ -48,7 +48,7 @@ char			**ft_make_argv(char **argv, int i)
 	return (fresh);
 }
 
-t_env			*ft_env_i(char **argv, t_env *env)
+t_env	*ft_env_i(char **argv, t_env *env)
 {
 	char	*path;
 	int		i;
@@ -57,7 +57,7 @@ t_env			*ft_env_i(char **argv, t_env *env)
 
 	if ((i = ft_get_index(argv)) == -1)
 	{
-		Bellatrix_Cuddlecunt(argv);
+		ft_bellatrix_cuddlecunt(argv);
 		return (env);
 	}
 	if ((path = ft_find_bin(argv[i], env)) == NULL)

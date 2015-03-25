@@ -6,13 +6,13 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 15:46:17 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/25 16:36:04 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/03/25 17:10:21 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_minishell.h"
 
-static t_env	*ft_core(char *line, t_env *env)
+t_env	*ft_core(char *line, t_env *env)
 {
 	char	**argv;
 	char	*path;
@@ -33,7 +33,7 @@ static t_env	*ft_core(char *line, t_env *env)
 	return (env);
 }
 
-void			ft_prompt(char **envp, t_env *env)
+void	ft_prompt(char **envp, t_env *env)
 {
 	char	*line;
 
@@ -53,7 +53,7 @@ void			ft_prompt(char **envp, t_env *env)
 	(void)envp;
 }
 
-static t_env	*shlvl_pp(t_env *env)
+t_env	*shlvl_pp(t_env *env)
 {
 	t_env	*swap;
 	int		inception;
@@ -69,7 +69,7 @@ static t_env	*shlvl_pp(t_env *env)
 	return (env);
 }
 
-int				main(int argc, char **argv, char **envp)
+int		main(int argc, char **argv, char **envp)
 {
 	t_env	*env;
 

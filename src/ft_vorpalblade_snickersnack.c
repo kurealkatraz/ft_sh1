@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Vorpalblade_Snickersnack.c                         :+:      :+:    :+:   */
+/*   ft_vorpalblade_snickersnack.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/24 18:36:49 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/24 19:32:43 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/25 17:08:24 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_minishell.h"
 
-static int		Bentobox_Sushisnatch(char **argv, char *cmp, int pos)
+int		ft_bentobox_sushisnatch(char **argv, char *cmp, int pos)
 {
 	int		cmplen;
 
@@ -27,14 +27,14 @@ static int		Bentobox_Sushisnatch(char **argv, char *cmp, int pos)
 	return (0);
 }
 
-void	Bellatrix_Cuddlecunt(char **argv)
+void	ft_bellatrix_cuddlecunt(char **argv)
 {
 	int		pos;
 
 	pos = 2;
 	while (argv[pos] != NULL)
 	{
-		if (Bentobox_Sushisnatch(argv, argv[pos], pos + 1) == 0)
+		if (ft_bentobox_sushisnatch(argv, argv[pos], pos + 1) == 0)
 			ft_putendl(argv[pos]);
 		pos++;
 	}

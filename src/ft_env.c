@@ -6,27 +6,11 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/26 15:46:15 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/24 17:38:00 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/25 17:04:16 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_minishell.h"
-
-t_env	*ft_free_member(t_env *current, t_env *saved)
-{
-	free(current->name);
-	free(current->value);
-	if (saved != NULL)
-		saved->next = current->next;
-	else
-	{
-		saved = current->next;
-		free(current);
-		return (saved);
-	}
-	free(current);
-	return (saved->next);
-}
 
 char	**ft_get_envp(t_env *env)
 {

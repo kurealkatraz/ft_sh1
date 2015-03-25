@@ -6,13 +6,13 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/17 10:40:28 by tlebrize          #+#    #+#             */
-/*   Updated: 2015/03/25 16:42:51 by tlebrize         ###   ########.fr       */
+/*   Updated: 2015/03/25 17:02:55 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_minishell.h"
 
-static char	*ft_getend(char *dst, char *src, int j)
+char	*ft_getend(char *dst, char *src, int j)
 {
 	int		i;
 	int		k;
@@ -26,7 +26,7 @@ static char	*ft_getend(char *dst, char *src, int j)
 	return (dst);
 }
 
-static char	*ft_getpath(void)
+char	*ft_getpath(void)
 {
 	char	*fresh;
 	char	*buff;
@@ -48,7 +48,7 @@ static char	*ft_getpath(void)
 	return (fresh);
 }
 
-static char	*ft_gettime(void)
+char	*ft_gettime(void)
 {
 	char	t[26];
 	time_t	tloc;
@@ -58,7 +58,7 @@ static char	*ft_gettime(void)
 	return (ft_strndup(t + 11, 8));
 }
 
-static char	*ft_getname(char **envp)
+char	*ft_getname(char **envp)
 {
 	int		i;
 	char	*fresh;
@@ -75,7 +75,7 @@ static char	*ft_getname(char **envp)
 	return (fresh);
 }
 
-void		ft_colors(char **envp)
+void	ft_colors(char **envp)
 {
 	char	*name;
 	char	*time;

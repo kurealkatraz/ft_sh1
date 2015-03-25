@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/24 13:35:12 by tlebrize          #+#    #+#             */
-/*   Updated: 2015/03/24 16:45:33 by mgras            ###   ########.fr       */
+/*   Updated: 2015/03/25 17:05:43 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,22 +35,4 @@ t_env	*ft_env_generator(t_env *env, char **med, int markpos)
 		pos++;
 	}
 	return (env);
-}
-
-t_env	*ft_free_all_env(t_env *env)
-{
-	t_env	*swp;
-
-	swp = env;
-	while (env != NULL)
-	{
-		swp = env;
-		if (env->name)
-			free(env->name);
-		if (env->value)
-			free(env->value);
-		env = env->next;
-		free(swp);
-	}
-	return (NULL);
 }

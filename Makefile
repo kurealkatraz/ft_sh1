@@ -6,7 +6,7 @@
 #    By: mgras <mgras@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/02/26 15:24:20 by mgras             #+#    #+#              #
-#    Updated: 2015/03/24 19:22:29 by mgras            ###   ########.fr        #
+#    Updated: 2015/03/25 17:11:05 by mgras            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,14 +19,14 @@ SRC_NAME =	ft_builtin_env.c \
 			ft_core.c \
 			ft_get_next_line.c \
 			ft_builtin_fnc.c \
-			0_error.c \
+			ft_error.c \
 			ft_new_process.c \
 			ft_check_argv.c \
 			ft_buildtin_gmb.c \
 			ft_color.c \
 			ft_cleaner.c \
 			ft_env_care.c \
-			Vorpalblade_Snickersnack.c
+			ft_vorpalblade_snickersnack.c
 
 SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
 
