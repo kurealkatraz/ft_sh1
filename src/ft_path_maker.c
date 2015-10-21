@@ -1,14 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_child_abuse.c                                   :+:      :+:    :+:   */
+/*   ft_path_maker.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/25 16:42:44 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/25 16:42:50 by mgras            ###   ########.fr       */
+/*   Created: 2015/04/07 15:49:55 by mgras             #+#    #+#             */
+/*   Updated: 2015/08/10 18:12:21 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "shell.h"
 
 char	*ft_split_path(char *value)
 {
@@ -43,6 +45,7 @@ t_pth	*ft_new_pth(t_pth *pth, char *path)
 	i = 0;
 	newpth->path = ft_strcpy(newpth->path, path);
 	newpth->next = pth;
+	ft_strdel(&path);
 	return (newpth);
 }
 

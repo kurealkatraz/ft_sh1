@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_prex.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/02/27 15:24:00 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/25 17:11:21 by mgras            ###   ########.fr       */
+/*   Created: 2015/04/07 18:49:25 by mgras             #+#    #+#             */
+/*   Updated: 2015/08/12 12:16:37 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_minishell.h"
+#include "shell.h"
 
-void	e_no_match_env(char *erred_str)
+t_env	*ft_muzukashi(t_lex *med, t_env *env)
 {
-	ft_putstr("unsetenv : No match foud for ");
-	ft_putstr(erred_str);
-	ft_putchar('\n');
-}
-
-void	e_no_such_path(char *erred_str)
-{
-	ft_putstr("cd : No such directory \"");
-	ft_putstr(erred_str);
-	ft_putstr("\"\n");
+	if (!ft_ispath(med->mem) && med->path == NULL && !ft_is_buildtin(med->mem))
+		ft_scann_eror(005, med->mem);
+	else
+		env = ft_parser(med, env);
+	return (env);
 }

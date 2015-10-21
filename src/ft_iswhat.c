@@ -1,22 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   ft_iswhat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/06 22:30:00 by mgras             #+#    #+#             */
-/*   Updated: 2015/08/12 12:23:57 by mgras            ###   ########.fr       */
+/*   Created: 2015/04/04 16:04:36 by mgras             #+#    #+#             */
+/*   Updated: 2015/08/12 11:32:44 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "shell.h"
 
-void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
+int		ft_is_what_len_pipe(t_lex *med)
 {
-	while (lst != NULL)
+	t_lex	*swp;
+	int		len;
+
+	len = 0;
+	swp = med;
+	while (swp && !ft_ispipe(swp->mem[0]))
 	{
-		f(lst);
-		lst = lst->next;
+		swp = swp->next;
+		len++;
 	}
+	return (len);
+}
+
+int		ft_is_next_op_pipe(t_lex *med)
+{
+	t_lex	*swp;
+
+	swp = med;
+	while (swp != NULL)
+	{
+		if (ft_ispipe(swp->mem[0]))
+			return (1);
+		swp = swp->next;
+	}
+	return (0);
 }

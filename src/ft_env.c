@@ -5,40 +5,40 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/02/26 15:46:15 by mgras             #+#    #+#             */
-/*   Updated: 2015/03/25 17:04:16 by mgras            ###   ########.fr       */
+/*   Created: 2015/03/31 17:50:49 by mgras             #+#    #+#             */
+/*   Updated: 2015/08/10 23:27:49 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_minishell.h"
+#include "shell.h"
 
-char	**ft_get_envp(t_env *env)
+t_env	*ft_free_one_env(t_env *env)
 {
-	char	**envp;
-	t_env	*swap;
-	int		i;
-	int		len;
+	t_env	*swp;
 
-	swap = env;
-	i = 0;
-	while ((swap = swap->next) != NULL)
-		i++;
-	envp = (char**)malloc(sizeof(char*) * (i + 1));
-	envp[i + 1] = NULL;
-	swap = env;
-	i = 0;
-	while (swap != NULL)
+	swp = env->next;
+	free(env->name);
+	free(env->value);
+	free(env);
+	return (swp);
+}
+
+t_env	*ft_del_env(t_env *env, t_env *del)
+{
+	t_env	*swp;
+
+	swp = env;
+	if (del == NULL)
+		return (env);
+	if (del == env)
 	{
-		len = ft_strlen(swap->value) + ft_strlen(swap->name) + 2;
-		envp[i] = (char*)malloc(sizeof(char) * len);
-		envp[i] = ft_strcpy(envp[i], swap->name);
-		envp[i] = ft_strcat(envp[i], "=");
-		envp[i] = ft_strcat(envp[i], swap->value);
-		i++;
-		envp[i] = NULL;
-		swap = swap->next;
+		env = ft_free_one_env(env);
+		return (env);
 	}
-	return (envp);
+	while (swp->next != del)
+		swp = swp->next;
+	swp->next = ft_free_one_env(del);
+	return (env);
 }
 
 t_env	*ft_new_env(t_env *env, char *full)
@@ -47,6 +47,9 @@ t_env	*ft_new_env(t_env *env, char *full)
 	size_t	size;
 
 	size = 0;
+	new = NULL;
+	if (full == NULL)
+		return (env);
 	while (full[size] != '\0' && full[size] != '=')
 		size++;
 	new = (t_env*)malloc(sizeof(t_env));

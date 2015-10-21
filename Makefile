@@ -5,28 +5,49 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mgras <mgras@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2015/02/26 15:24:20 by mgras             #+#    #+#              #
-#    Updated: 2015/03/25 17:11:05 by mgras            ###   ########.fr        #
+#    Created: 2015/03/31 15:31:03 by mgras             #+#    #+#              #
+#    Updated: 2015/08/14 13:15:21 by mgras            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC_PATH = ./src/
 
-SRC_NAME =	ft_builtin_env.c \
-			ft_0_free.c \
-			ft_builtin_utility.c \
-			ft_env.c \
-			ft_core.c \
-			ft_get_next_line.c \
-			ft_builtin_fnc.c \
-			ft_error.c \
-			ft_new_process.c \
-			ft_check_argv.c \
-			ft_buildtin_gmb.c \
-			ft_color.c \
+SRC_NAME =	ft_chldabs.c \
 			ft_cleaner.c \
-			ft_env_care.c \
-			ft_vorpalblade_snickersnack.c
+			ft_cleaner_one.c \
+			ft_color.c \
+			ft_core.c \
+			ft_core_one.c \
+			ft_env.c \
+			ft_env_one.c \
+			ft_env_two.c \
+			ft_env_three.c \
+			ft_get_next_line.c \
+			ft_lexseur.c \
+			ft_lexseur_one.c \
+			ft_lex_mcr.c \
+			ft_correction_center.c \
+			ft_scan_error.c \
+			ft_iswhat.c \
+			ft_iswhat_one.c \
+			ft_iswhat_two.c \
+			ft_path_maker.c \
+			ft_prex.c \
+			ft_prex_one.c \
+			ft_prex_two.c \
+			ft_prex_three.c \
+			ft_prex_four.c \
+			ft_prex_five.c \
+			ft_setenv.c \
+			ft_unsetenv.c \
+			ft_cd.c \
+			ft_pipes.c \
+			ft_pipes_one.c \
+			ft_pipes_two.c \
+			ft_pipes_three.c \
+			ft_get_file.c \
+			ft_heredocs.c \
+			ft_heredocs_one.c \
 
 SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
 
@@ -44,24 +65,24 @@ INC_PATH = ./include/
 
 INC = $(addprefix -I, $(INC_PATH))
 
-NAME = ft_minishell1
+NAME = ft_minishell2
 
 CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
 
-all : lib $(NAME)
+all : $(NAME)
 
-lib :
+libft.a :
 	make -C $(LIB_PATH) re
 	cp $(LIB_PATH)$(LIB_NAME) .
 
-$(NAME) : $(OBJ)
-	$(CC) $(CFLAGS) $(INC) -o $(NAME) $(LIB_NAME) $(OBJ) -g
+$(NAME) : libft.a $(OBJ)
+	$(CC) $(CFLAGS) $(INC) -o $(NAME) $(OBJ) $(LIB_NAME) -g
 
 $(OBJ_PATH)%.o : $(SRC_PATH)%.c
 	@mkdir $(OBJ_PATH) 2> /dev/null || echo "" > /dev/null
-	$(CC) $(CFLAGS) $(LIB) $(INC) -o $@ -c $< -g
+	$(CC) $(CFLAGS) $(INC) $(LIB) -o $@ -c $< -g
 
 clean :
 	make -C $(LIB_PATH) clean
